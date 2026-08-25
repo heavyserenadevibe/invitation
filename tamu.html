@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: transparent;
+            font-family: Arial, Helvetica, sans-serif;
+            text-align: center;
+            color: #FFFFFF; /* Warna teks putih (bisa diganti jika latar terang) */
+        }
+        p {
+            font-size: 13px;
+            margin: 0 0 4px 0;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            opacity: 0.9;
+        }
+        h1 {
+            font-size: 26px;
+            font-weight: 600;
+            margin: 0 0 4px 0;
+            text-shadow: 0 2px 8px rgba(0,0,0,0.6);
+        }
+    </style>
+</head>
+<body>
+
+    <p>Kepada Yth</p>
+    <h1 id="nama">Tamu Undangan</h1>
+    <p>di Tempat</p>
+
+    <script>
+        // Membaca parameter ?to= dari URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const namaTamu = urlParams.get('to');
+        
+        // Jika parameter ditemukan, ganti teks 'Tamu Undangan'
+        if (namaTamu) {
+            document.getElementById('nama').textContent = decodeURIComponent(namaTamu);
+        }
+    </script>
+
+</body>
+</html>
