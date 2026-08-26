@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Wedding of Anya & Julian</title>
+    
+    <!-- Import Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Sacramento&family=Cinzel:wght@400;600&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body, html {
+            height: 100%;
+            width: 100%;
+            font-family: 'Montserrat', sans-serif;
+            color: #FFFFFF;
+            overflow: hidden;
+        }
+
+        /* Container Penuh Layar dengan Distribusi Jarak Proporsional */
+        .cover-container {
+            background-image: url('wtc3.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            height: 100vh;
+            width: 100vw;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between; /* Menjaga elemen atas & bawah menyebar penuh */
+            align-items: center;
+            text-align: center;
+            padding: 80px 20px 60px 20px; /* Padding atas & bawah diperbesar agar penuh layar */
+        }
+
+        /* Header Nama Pengantin */
+        .header-title .sub-title {
+            font-family: 'Cinzel', serif;
+            font-size: 13px;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+            opacity: 0.9;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.8);
+        }
+
+        .header-title .main-title {
+            font-family: 'Sacramento', cursive;
+            font-size: 72px;
+            line-height: 1.1;
+            font-weight: normal;
+            text-shadow: 0 4px 12px rgba(0,0,0,0.9);
+        }
+
+        /* Container Bawah (Nama Tamu & Tombol) */
+        .bottom-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+        }
+
+        /* Area Nama Tamu */
+        .guest-section {
+            margin-bottom: 35px; /* JARAK DITAMBAHKAN: Memberi spasi lebih antara Nama Tamu & Tombol */
+        }
+
+        .guest-section .yth {
+            font-size: 13px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            font-weight: 300;
+            margin-bottom: 8px;
+            opacity: 0.9;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.8);
+        }
+
+        .guest-section .guest-name {
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 6px;
+            text-shadow: 0 2px 8px rgba(0,0,0,0.9);
+        }
+
+        .guest-section .location {
+            font-size: 13px;
+            font-weight: 300;
+            opacity: 0.8;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.8);
+        }
+
+        /* Tombol Buka Undangan */
+        .btn-open {
+            display: inline-block;
+            text-decoration: none;
+            color: #FFFFFF;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 13px;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            padding: 12px 32px;
+            background: rgba(255, 255, 255, 0.15);
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            border-radius: 25px;
+            backdrop-filter: blur(5px);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .btn-open:active, .btn-open:focus {
+            background: rgba(255, 255, 255, 0.4);
+            box-shadow: 0 0 25px rgba(255, 255, 255, 0.9), 0 0 10px rgba(255, 255, 255, 0.6);
+            transform: scale(0.96);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="cover-container">
+        <!-- Bagian Atas: Judul & Nama Pengantin -->
+        <div class="header-title">
+            <p class="sub-title">THE WEDDING</p>
+            <h1 class="main-title">Anya<br>&amp;<br>Julian</h1>
+        </div>
+
+        <!-- Bagian Bawah: Nama Tamu & Tombol -->
+        <div class="bottom-container">
+            <div class="guest-section">
+                <p class="yth">Kepada Yth</p>
+                <h2 class="guest-name" id="nama-tamu">Tamu Undangan</h2>
+                <p class="location">di Tempat</p>
+            </div>
+
+            <a href="https://sites.google.com/view/bayri-wtc03/home" class="btn-open">
+                Buka Undangan
+            </a>
+        </div>
+    </div>
+
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const nama = urlParams.get('to');
+        if (nama) {
+            document.getElementById('nama-tamu').textContent = decodeURIComponent(nama);
+        }
+    </script>
+
+</body>
+</html>
