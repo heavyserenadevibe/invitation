@@ -3,190 +3,215 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sampul Undangan</title>
-    <!-- Import Google Fonts: Roboto & Satisfy -->
+    <title>The Wedding of Anya & Julian</title>
+    
+    <!-- Import Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400&family=Satisfy&display=swap" rel="stylesheet">
-    <!-- FontAwesome untuk Icon Tombol -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500&family=Satisfy&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+
     <style>
-        *, *::before, *::after {
+        * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
         }
 
-        body {
-            margin: 0;
-            padding: 30px 15px;
-            /* Memanggil gambar lokal PIC01 Sampul.jpg sebagai background dengan efek gelap tipis agar teks lebih terbaca */
-            background-image: linear-gradient(rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.35)), url('PIC01 Sampul.jpg');
+        body, html {
+            height: 100%;
+            width: 100%;
+            font-family: 'Montserrat', sans-serif;
+            color: #FFFFFF;
+            overflow: hidden;
+            background-color: #000;
+        }
+
+        /* Transisi Halaman Keluar */
+        .page-transition {
+            opacity: 1;
+            transition: opacity 0.8s ease-in-out;
+        }
+
+        .page-fade-out {
+            opacity: 0;
+        }
+
+        /* Container Penuh Layar dengan Distribusi Jarak Proporsional */
+        .cover-container {
+            background-image: url('PIC01 Sampul.jpg');
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
-            background-attachment: fixed;
-            font-family: 'Roboto', sans-serif;
-            text-align: center;
-            overflow-x: hidden;
-            min-height: 100vh;
+            height: 100vh;
+            width: 100vw;
             display: flex;
+            flex-direction: column;
+            justify-content: space-between;
             align-items: center;
-            justify-content: center;
+            text-align: center;
+            padding: 80px 20px 60px 20px;
         }
 
-        .cover-container {
-            max-width: 500px;
-            width: 100%;
-            margin: 0 auto;
+        /* Header Nama Pengantin */
+        .header-title .sub-title {
+            font-family: 'Oswald', sans-serif;
+            font-size: 15px;
+            letter-spacing: 5px;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+            opacity: 0.9;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.8);
+        }
+
+        .header-title .main-title {
+            font-family: 'Satisfy', cursive;
+            font-size: 68px;
+            line-height: 1.2;
+            font-weight: normal;
+            text-shadow: 0 4px 12px rgba(0,0,0,0.9);
+        }
+
+        /* Container Bawah (Nama Tamu & Tombol) */
+        .bottom-container {
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: center;
-        }
-
-        /* Teks The Wedding Of (Font Roboto Regular) */
-        .wedding-label {
-            font-family: 'Roboto', sans-serif;
-            font-weight: 400;
-            font-size: clamp(1rem, 3.5vw, 1.2rem);
-            color: #ffffff;
-            letter-spacing: 3px;
-            text-transform: uppercase;
-            margin-bottom: 12px;
-            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.6);
-        }
-
-        /* Teks Nama Pasangan (Font Satisfy) */
-        .couple-name {
-            font-family: 'Satisfy', cursive;
-            font-size: clamp(2.5rem, 8vw, 3.8rem);
-            font-weight: normal;
-            color: #ffffff;
-            margin-bottom: 25px;
-            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.7);
-        }
-
-        /* Area Tamu Undangan Tanpa Kotak (Polos) */
-        .guest-section {
-            margin-bottom: 25px;
             width: 100%;
-            padding: 0 10px;
         }
 
-        .guest-title {
-            font-size: 0.9rem;
-            color: #f1f5f9;
-            margin-bottom: 6px;
-            font-weight: 400;
-            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.6);
+        /* Area Nama Tamu */
+        .guest-section {
+            margin-bottom: 30px;
         }
 
-        .guest-name {
-            font-size: 1.2rem;
-            font-weight: 700;
-            color: #ffffff;
-            margin-bottom: 6px;
-            word-break: break-word;
-            text-shadow: 0 1px 4px rgba(0, 0, 0, 0.7);
-        }
-
-        .guest-note {
-            font-size: 9px;
-            color: #e2e8f0;
+        .guest-section .yth {
+            font-size: 13px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            font-weight: 300;
+            margin-bottom: 8px;
             opacity: 0.9;
-            line-height: 1.3;
-            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.6);
+            text-shadow: 0 2px 4px rgba(0,0,0,0.8);
         }
 
-        /* Tombol Buka Undangan dengan Efek Animasi & Kilau */
+        .guest-section .guest-name {
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 6px;
+            text-shadow: 0 2px 8px rgba(0,0,0,0.9);
+        }
+
+        .guest-section .location {
+            font-size: 13px;
+            font-weight: 300;
+            opacity: 0.8;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.8);
+            margin-bottom: 8px;
+        }
+
+        /* Catatan Kecil Permohonan Maaf */
+        .apology-note {
+            font-size: 8px;
+            font-weight: 300;
+            opacity: 0.7;
+            letter-spacing: 0.5px;
+            max-width: 280px;
+            line-height: 1.3;
+            text-shadow: 0 1px 3px rgba(0,0,0,0.8);
+        }
+
+        /* Tombol Buka Undangan Elegan dengan Animasi */
+        @keyframes softPulse {
+            0% { transform: scale(1); box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3); }
+            50% { transform: scale(1.03); box-shadow: 0 6px 20px rgba(255, 255, 255, 0.25); }
+            100% { transform: scale(1); box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3); }
+        }
+
         .btn-open {
-            position: relative;
             display: inline-flex;
             align-items: center;
             justify-content: center;
             gap: 10px;
-            padding: 12px 28px;
-            background: rgba(255, 255, 255, 0.2);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.4);
-            color: #ffffff;
-            font-family: 'Roboto', sans-serif;
-            font-size: 0.95rem;
-            font-weight: 600;
             text-decoration: none;
+            color: #FFFFFF;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            padding: 14px 34px;
+            background: rgba(255, 255, 255, 0.18);
+            border: 1px solid rgba(255, 255, 255, 0.5);
             border-radius: 30px;
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
-            overflow: hidden;
-            transition: transform 0.3s ease, background 0.3s ease, box-shadow 0.3s ease;
-            animation: pulseBtn 2.5s infinite;
+            backdrop-filter: blur(8px);
+            cursor: pointer;
+            animation: softPulse 3s infinite ease-in-out;
+            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
         }
 
-        .btn-open::after {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: linear-gradient(
-                45deg,
-                transparent 45%,
-                rgba(255, 255, 255, 0.6) 50%,
-                transparent 55%
-            );
-            transform: rotate(35deg) translateX(-100%);
-            animation: shine 3s infinite linear;
-        }
-
-        @keyframes shine {
-            0% { transform: rotate(35deg) translateX(-100%); }
-            20% { transform: rotate(35deg) translateX(100%); }
-            100% { transform: rotate(35deg) translateX(100%); }
-        }
-
-        @keyframes pulseBtn {
-            0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.4); }
-            70% { transform: scale(1.04); box-shadow: 0 0 0 10px rgba(255, 255, 255, 0); }
-            100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255, 255, 255, 0); }
+        .btn-open svg {
+            width: 14px;
+            height: 14px;
+            fill: currentColor;
+            transition: transform 0.3s ease;
         }
 
         .btn-open:hover {
-            background: rgba(255, 255, 255, 0.35);
-            transform: scale(1.06);
+            background: rgba(255, 255, 255, 0.3);
+            border-color: rgba(255, 255, 255, 0.8);
+            transform: translateY(-2px);
+        }
+
+        .btn-open:hover svg {
+            transform: translateX(4px);
         }
     </style>
 </head>
-<body>
+<body class="page-transition">
 
     <div class="cover-container">
-        <!-- Teks Tema & Nama Pasangan (Font Satisfy) -->
-        <div class="wedding-label">The Wedding Of</div>
-        <div class="couple-name">Anya & Julian</div>
-
-        <!-- Kolom Nama Tamu Undangan (Polos Tanpa Kotak) -->
-        <div class="guest-section">
-            <div class="guest-title">Kepada Yth.</div>
-            <div class="guest-name" id="guestName">Tamu Undangan</div>
-            <div class="guest-note">Mohon maaf apabila ada kesalahan dalam penulisan gelar atau nama</div>
+        <!-- Bagian Atas: Judul & Nama Pengantin -->
+        <div class="header-title">
+            <p class="sub-title">The Wedding Of</p>
+            <h1 class="main-title">Anya &amp; Julian</h1>
         </div>
 
-        <!-- Tombol Buka Undangan -->
-        <a href="https://sites.google.com/view/bayri-pic01/home" class="btn-open" id="openBtn">
-            <i class="fa-solid fa-envelope-open-text"></i> Buka Undangan
-        </a>
+        <!-- Bagian Bawah: Nama Tamu & Tombol -->
+        <div class="bottom-container">
+            <div class="guest-section">
+                <p class="yth">Kepada Yth. Tamu Undangan</p>
+                <h2 class="guest-name" id="nama-tamu">Tamu Undangan</h2>
+                <p class="location">di Tempat</p>
+                <p class="apology-note">Mohon maaf apabila ada kesalahan dalam penulisan nama dan gelar.</p>
+            </div>
+
+            <a href="https://sites.google.com/view/bayri-invitation/invitation" class="btn-open" id="open-btn">
+                <span>Buka Undangan</span>
+                <svg viewBox="0 0 24 24"><path d="M5 13h11.586l-5.293 5.293 1.414 1.414L21.414 12l-7.707-7.707-1.414 1.414L16.586 11H5z"/></svg>
+            </a>
+        </div>
     </div>
 
     <script>
-        // Skrip untuk membaca nama tamu dari URL (format: ?to=Nama+Tamu)
         const urlParams = new URLSearchParams(window.location.search);
-        const guestParam = urlParams.get('to');
-        
-        if (guestParam) {
-            document.getElementById('guestName').innerText = guestParam.replace(/_/g, ' ');
+        const nama = urlParams.get('to');
+        if (nama) {
+            document.getElementById('nama-tamu').textContent = decodeURIComponent(nama);
         }
+
+        // Efek Transisi Animasi Keluar saat Tombol Diklik
+        const openBtn = document.getElementById('open-btn');
+        openBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            const targetUrl = this.getAttribute('href');
+            
+            document.body.classList.add('page-fade-out');
+            
+            setTimeout(() => {
+                window.location.href = targetUrl;
+            }, 800);
+        });
     </script>
+
 </body>
 </html>
