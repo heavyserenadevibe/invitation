@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Wedding of Anya & Julian</title>
+<!-- Mengimpor font Plus Jakarta Sans, Outfit, dan Yeseva One -->
+<link href="https://fonts.googleapis.com/css2?family=Outfit:ital,wght@0,300;0,400;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;700&family=Yeseva+One&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  body {
+    /* Pemanggil Background PIC02.jpg */
+    background: url('PIC02.jpg') no-repeat center center fixed;
+    background-size: cover;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    color: #ffffff;
+    overflow-x: hidden;
+    min-height: 100vh;
+  }
+
+  /* Overlay opsional agar teks lebih terbaca jika background terlalu terang (bisa dihapus jika tidak diperlukan) */
+  body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.3); /* Lapisan gelap transparan 30% */
+    z-index: 1;
+  }
+
+  /* Wrapper Full Layar / Fitted Web View */
+  .invitation-wrapper {
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+    padding: clamp(20px, 3vw, 40px) clamp(15px, 3vw, 30px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 2; /* Agar berada di atas overlay background */
+  }
+
+  .invitation-container {
+    width: 100%;
+    max-width: 600px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: clamp(10px, 2vh, 20px) 10px;
+  }
+
+  /* Keyframes Animasi Masuk & Elegan */
+  .scroll-animate {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 1.5s cubic-bezier(0.16, 1, 0.3, 1), transform 1.5s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: opacity, transform;
+  }
+
+  .scroll-animate.active {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Animasi Gradasi Abu-abu Bergerak (Moving Grey Gradient) */
+  @keyframes shineGradient {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+
+  /* THE WEDDING (Sans Serif, 8px, White) */
+  .wedding-title {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-weight: 500;
+    font-size: 8px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: #ffffff;
+    margin-bottom: 15px;
+    text-align: center;
+  }
+
+  /* Nama Pengantin (Yeseva One, 35px, Gradasi Abu-abu Bergerak) */
+  .couple-name {
+    font-family: 'Yeseva One', serif;
+    font-size: 35px;
+    line-height: 1.2;
+    text-align: center;
+    background: linear-gradient(270deg, #ffffff, #888888, #cccccc, #ffffff);
+    background-size: 300% 300%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: shineGradient 6s ease infinite;
+    margin-bottom: 8px;
+  }
+
+  .couple-ampersand {
+    font-family: 'Yeseva One', serif;
+    font-size: 26px;
+    color: rgba(255, 255, 255, 0.8);
+    margin: 4px 0;
+  }
+
+  /* Jarak Enter */
+  .spacer-spacing {
+    height: 40px;
+  }
+
+  /* Teks Tamu Undangan (Sans Serif, 8px) */
+  .guest-salutation {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-weight: 300;
+    font-size: 8px;
+    color: rgba(255, 255, 255, 0.8);
+    margin-bottom: 6px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+
+  .guest-name {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-weight: 600;
+    font-size: 11px;
+    color: #ffffff;
+    margin-bottom: 25px;
+    letter-spacing: 0.5px;
+  }
+
+  /* Tombol Buka Undangan dengan Animasi */
+  @keyframes pulseButton {
+    0% {
+      box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.4);
+    }
+    70% {
+      box-shadow: 0 0 0 10px rgba(255, 255, 255, 0);
+    }
+    100% {
+      box-shadow: 0 0 0 0 rgba(255, 255, 255, 0);
+    }
+  }
+
+  .open-button {
+    display: inline-block;
+    padding: 10px 24px;
+    background-color: rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    border-radius: 30px;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-weight: 500;
+    font-size: 9px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: #ffffff;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    animation: pulseButton 2.5s infinite;
+    cursor: pointer;
+  }
+
+  .open-button:hover {
+    background-color: #ffffff;
+    color: #000000;
+    transform: translateY(-2px);
+  }
+</style>
+</head>
+<body>
+
+<div class="invitation-wrapper">
+  <div class="invitation-container">
+    
+    <!-- Judul The Wedding -->
+    <div class="wedding-title scroll-animate">
+      The Wedding of
+    </div>
+    
+    <!-- Nama Anya -->
+    <div class="couple-name scroll-animate" style="transition-delay: 0.2s;">
+      Anya
+    </div>
+
+    <!-- Simbol & -->
+    <div class="couple-ampersand scroll-animate" style="transition-delay: 0.3s;">
+      &
+    </div>
+
+    <!-- Nama Julian -->
+    <div class="couple-name scroll-animate" style="transition-delay: 0.4s;">
+      Julian
+    </div>
+
+    <!-- Jarak Enter -->
+    <div class="spacer-spacing"></div>
+
+    <!-- Bagian Tamu Undangan -->
+    <div class="guest-salutation scroll-animate" style="transition-delay: 0.5s;">
+      Kepada Yth. Bapak/Ibu/Saudara/i
+    </div>
+
+    <div id="guestNameContainer" class="guest-name scroll-animate" style="transition-delay: 0.6s;">
+      Tamu Undangan
+    </div>
+
+    <!-- Tombol Buka Undangan -->
+    <!-- Ganti link di bawah dengan link Google Sites halaman berikutnya -->
+    <a href="https://situs-tujuan-anda.com" id="openInvitationBtn" class="open-button scroll-animate" style="transition-delay: 0.7s;">
+      Buka Undangan
+    </a>
+
+  </div>
+</div>
+
+<script>
+  // Script untuk menangkap parameter URL ?to=Nama+Tamu
+  document.addEventListener("DOMContentLoaded", function () {
+    const urlParams = new URLSearchParams(window.location.search);
+    const guestParam = urlParams.get('to');
+    
+    if (guestParam) {
+      document.getElementById('guestNameContainer').textContent = decodeURIComponent(guestParam);
+    }
+
+    // Script untuk Animasi Scroll (Slow & Smooth)
+    const observerOptions = {
+      root: null,
+      rootMargin: '0px',
+      threshold: 0.15
+    };
+
+    const observer = new IntersectionObserver((entries, observer) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('active');
+        } else {
+          entry.target.classList.remove('active');
+        }
+      });
+    }, observerOptions);
+
+    const animatedElements = document.querySelectorAll('.scroll-animate');
+    animatedElements.forEach(el => observer.observe(el));
+  });
+</script>
+
+</body>
+</html>
