@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Wedding of Anya & Julian</title>
+<!-- Mengimpor Google Font & FontAwesome -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:ital,wght@0,300;0,400;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;700&family=Montserrat:wght@300;400;500;600&family=Yeseva+One&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+<style>
+  *, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  body {
+    margin: 0;
+    padding: 0;
+    background: #000000;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    color: #ffffff;
+    overflow-x: hidden;
+    width: 100vw;
+    min-height: 100vh;
+  }
+
+  /* Audio Latar Belakang (Hidden) */
+  audio {
+    display: none;
+  }
+
+  /* Container Slider Background Foto Berjalan Full Layar (Menetap di Belakang) */
+  .slider-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    z-index: 1;
+    pointer-events: none;
+  }
+
+  .slider-track {
+    display: flex;
+    height: 100vh;
+    width: max-content;
+    animation: scrollSlider 30s linear infinite;
+  }
+
+  .photo-card {
+    width: 100vw;
+    height: 100vh;
+    flex-shrink: 0;
+    overflow: hidden;
+    background: transparent;
+  }
+
+  .photo-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+  }
+
+  @keyframes scrollSlider {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+
+  /* Overlay Gelap Transparan */
+  .overlay-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.45);
+    z-index: 2;
+    pointer-events: none;
+  }
+
+  /* --- HALAMAN 1: COVER --- */
+  #coverSection {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 20px;
+    transition: opacity 1.5s cubic-bezier(0.16, 1, 0.3, 1), visibility 1.5s ease;
+  }
+
+  #coverSection.fade-out {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+  }
+
+  .cover-container {
+    width: 100%;
+    max-width: 500px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .guest-salutation {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 300;
+    font-size: 8px;
+    color: rgba(255, 255, 255, 0.85);
+    margin-bottom: 8px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+
+  .guest-box {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    border-radius: 8px;
+    padding: 10px 20px;
+    margin-bottom: 25px;
+    min-width: 220px;
+    max-width: 90%;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  }
+
+  .guest-name {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    font-size: 11px;
+    color: #ffffff;
+    letter-spacing: 0.5px;
+  }
+
+  @keyframes pulseButton {
+    0% { box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.4); }
+    70% { box-shadow: 0 0 0 10px rgba(255, 255, 255, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(255, 255, 255, 0); }
+  }
+
+  .open-button {
+    display: inline-block;
+    padding: 10px 24px;
+    background-color: rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    border-radius: 30px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
+    font-size: 9px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: #ffffff;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    animation: pulseButton 2.5s infinite;
+    cursor: pointer;
+  }
+
+  .open-button:hover {
+    background-color: #ffffff;
+    color: #000000;
+    transform: translateY(-2px);
+  }
+
+
+  /* --- HALAMAN 2: ISI UTAMA (AWALNYA TERSEMBUNYI) --- */
+  #mainContent {
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+    z-index: 5;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 1.5s cubic-bezier(0.16, 1, 0.3, 1), visibility 1.5s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    padding: clamp(30px, 6vh, 50px) 0;
+  }
+
+  #mainContent.fade-in {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .invitation-wrapper {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+  }
+
+  .hero-section {
+    width: 100%;
+    padding: 0 clamp(24px, 5vw, 40px);
+    max-width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    text-align: left;
+    position: relative;
+    margin-bottom: clamp(250px, 45vh, 450px);
+  }
+
+  .quote-section {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: clamp(32px, 5vh, 48px) clamp(24px, 6vw, 60px);
+    background: rgba(255, 255, 255, 0.65); /* White blurry */
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-top: 1px solid rgba(255, 255, 255, 0.8);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.8);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    z-index: 11;
+  }
+
+  @keyframes gradientFlow {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+
+  .gradient-glow-text {
+    background: linear-gradient(270deg, #ffffff, #a6a6a6, #e0e0e0, #737373, #ffffff);
+    background-size: 300% 300%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: gradientFlow 6s ease infinite;
+    filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.2));
+  }
+
+  .wedding-title {
+    font-family: 'Outfit', sans-serif;
+    font-weight: 300;
+    font-size: clamp(0.7rem, 1.6vw, 1rem);
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: #ffffff;
+    margin-bottom: 4px;
+  }
+
+  .couple-names {
+    font-family: 'Outfit', sans-serif;
+    font-weight: 700;
+    font-size: clamp(1.6rem, 5vw, 3.8rem);
+    line-height: 1.05;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 16px;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .line-name {
+    display: flex;
+    align-items: baseline;
+    flex-wrap: nowrap;
+    white-space: nowrap;
+  }
+
+  .ampersand {
+    font-size: 0.6em;
+    font-weight: 700;
+    margin-left: 10px;
+    transform: translateY(-2px);
+  }
+
+  .intro-text {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-weight: 300;
+    font-size: clamp(0.65rem, 1.1vw, 0.82rem);
+    line-height: 1.5;
+    color: rgba(255, 255, 255, 0.9);
+    margin-bottom: 25px;
+  }
+
+  .countdown-wrapper {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+    gap: clamp(6px, 2vw, 16px);
+    width: 100%;
+    margin-bottom: 25px;
+  }
+
+  .countdown-box {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    flex-shrink: 0;
+  }
+
+  .countdown-number {
+    font-family: 'Outfit', sans-serif;
+    font-weight: 700;
+    font-size: clamp(1rem, 2.5vw, 1.8rem);
+  }
+
+  .countdown-label {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-weight: 300;
+    font-size: clamp(0.48rem, 0.75vw, 0.6rem);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: rgba(255, 255, 255, 0.75);
+    margin-top: 1px;
+  }
+
+  /* Floating Music Button */
+  .floating-music-container {
+    display: block;
+    position: relative;
+    z-index: 2147483647;
+    opacity: 1;
+    visibility: visible;
+    transition: opacity 0.4s ease, visibility 0.4s ease;
+  }
+
+  .floating-music-container.hidden {
+    opacity: 0;
+    visibility: hidden;
+  }
+
+  .pastel-btn {
+    width: clamp(38px, 8vw, 42px);
+    height: clamp(38px, 8vw, 42px);
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 16px 0 rgba(0, 0, 0, 0.2), inset 0 0 8px rgba(255, 255, 255, 0.5);
+    position: relative;
+    overflow: hidden;
+    outline: none;
+    padding: 0;
+    transition: transform 0.3s ease, background 0.3s ease;
+  }
+
+  .pastel-btn::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(45deg, transparent 45%, rgba(255, 255, 255, 0.7) 50%, transparent 55%);
+    transform: rotate(35deg) translateX(-100%);
+    animation: shine 3s infinite linear;
+  }
+
+  @keyframes shine {
+    0% { transform: rotate(35deg) translateX(-100%); }
+    20% { transform: rotate(35deg) translateX(100%); }
+    100% { transform: rotate(35deg) translateX(100%); }
+  }
+
+  .pastel-btn:hover {
+    transform: scale(1.08);
+    background: rgba(255, 255, 255, 0.35);
+  }
+
+  .pastel-btn i {
+    font-size: clamp(0.8rem, 1.8vw, 0.95rem);
+    color: #ffffff;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+  }
+
+  @keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+
+  .playing {
+    animation: spin 4s linear infinite;
+  }
+
+  .quote-text {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 1.8;
+    color: #1a1a1a; /* Teks Hitam Kontras */
+    text-align: center;
+    max-width: 600px;
+  }
+
+  .quote-source {
+    font-family: 'Outfit', sans-serif;
+    font-weight: 600;
+    font-style: italic;
+    font-size: 11px;
+    color: #4a4a4a; /* Teks Hitam Abu Gelap */
+    margin-top: 16px;
+    text-align: center;
+    letter-spacing: 1px;
+  }
+</style>
+</head>
+<body>
+
+<!-- Audio Latar Belakang -->
+<audio id="bgMusic" src="https://files.catbox.moe/wv1h4d.mpeg" loop preload="auto"></audio>
+
+<!-- Background Slider Berjalan Full Layar (Menetap) -->
+<div class="slider-container">
+  <div class="slider-track">
+    <!-- Set 1 -->
+    <div class="photo-card"><img src="https://lh3.googleusercontent.com/d/1Cv7gnXx68XskZjpbQHXTVU9NHQOzbSm0=s800" alt="Moment 1"></div>
+    <div class="photo-card"><img src="https://lh3.googleusercontent.com/d/1x8Ybg4aE77i-SzbMCcfmGguGPCJ_HBGd=s800" alt="Moment 2"></div>
+    <div class="photo-card"><img src="https://lh3.googleusercontent.com/d/1grwW23VT-H-a-4KuETjK1ynw48DZOCvP=s800" alt="Moment 3"></div>
+    <div class="photo-card"><img src="https://lh3.googleusercontent.com/d/1YHkfQh5vZjwTpBqcFDqnfzDL_tnVy4tb=s800" alt="Moment 4"></div>
+    <div class="photo-card"><img src="https://lh3.googleusercontent.com/d/10sy37hpkyAioLfTysHDQcr7TZCEIkzAy=s800" alt="Moment 5"></div>
+    <!-- Set 2 (Loop) -->
+    <div class="photo-card"><img src="https://lh3.googleusercontent.com/d/1Cv7gnXx68XskZjpbQHXTVU9NHQOzbSm0=s800" alt="Moment 1"></div>
+    <div class="photo-card"><img src="https://lh3.googleusercontent.com/d/1x8Ybg4aE77i-SzbMCcfmGguGPCJ_HBGd=s800" alt="Moment 2"></div>
+    <div class="photo-card"><img src="https://lh3.googleusercontent.com/d/1grwW23VT-H-a-4KuETjK1ynw48DZOCvP=s800" alt="Moment 3"></div>
+    <div class="photo-card"><img src="https://lh3.googleusercontent.com/d/1YHkfQh5vZjwTpBqcFDqnfzDL_tnVy4tb=s800" alt="Moment 4"></div>
+    <div class="photo-card"><img src="https://lh3.googleusercontent.com/d/10sy37hpkyAioLfTysHDQcr7TZCEIkzAy=s800" alt="Moment 5"></div>
+  </div>
+</div>
+
+<!-- Overlay Gelap -->
+<div class="overlay-bg"></div>
+
+<!-- BAGIAN 1: HALAMAN COVER (Tampil Pertama) -->
+<section id="coverSection">
+  <div class="cover-container">
+    <div class="guest-salutation">Kepada Yth. Bapak/Ibu/Saudara/i</div>
+    <div class="guest-box">
+      <div id="guestNameContainer" class="guest-name">Tamu Undangan</div>
+    </div>
+    <button onclick="openInvitation()" class="open-button">Buka Undangan</button>
+  </div>
+</section>
+
+<!-- BAGIAN 2: HALAMAN ISI UTAMA (Muncul Perlahan Saat Tombol Diklik) -->
+<div id="mainContent">
+  <div class="invitation-wrapper">
+    
+    <!-- Hero Section -->
+    <div class="hero-section">
+      <div class="wedding-title">The Wedding Of</div>
+      
+      <div class="couple-names">
+        <div class="line-name">
+          <span class="gradient-glow-text">Anya</span>
+          <span class="ampersand gradient-glow-text">&</span>
+        </div>
+        <div class="line-name">
+          <span class="gradient-glow-text">Julian</span>
+        </div>
+      </div>
+
+      <div class="intro-text">
+        Together with our families, with great joy and warmth in our hearts, we cordially invite you to celebrate the joyous occasion of our marriage. Your presence will make our special day truly complete.
+      </div>
+
+      <!-- Countdown -->
+      <div class="countdown-wrapper">
+        <div class="countdown-box">
+          <div id="days" class="countdown-number gradient-glow-text">00</div>
+          <div class="countdown-label">Days</div>
+        </div>
+        <div class="countdown-box"><span class="countdown-number gradient-glow-text">I</span></div>
+        <div class="countdown-box">
+          <div id="hours" class="countdown-number gradient-glow-text">00</div>
+          <div class="countdown-label">Hours</div>
+        </div>
+        <div class="countdown-box"><span class="countdown-number gradient-glow-text">I</span></div>
+        <div class="countdown-box">
+          <div id="minutes" class="countdown-number gradient-glow-text">00</div>
+          <div class="countdown-label">Minutes</div>
+        </div>
+        <div class="countdown-box"><span class="countdown-number gradient-glow-text">I</span></div>
+        <div class="countdown-box">
+          <div id="seconds" class="countdown-number gradient-glow-text">00</div>
+          <div class="countdown-label">Seconds</div>
+        </div>
+      </div>
+
+      <!-- Tombol Musik -->
+      <div class="floating-music-container" id="musicContainer">
+        <button id="musicBtn" onclick="toggleMusic()" class="pastel-btn playing" aria-label="Toggle Musik">
+          <i id="musicIcon" class="fa-solid fa-compact-disc"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- Section Love Quote Full Kiri-Kanan, White Blurry, Teks Hitam -->
+    <div class="quote-section">
+      <div class="quote-text">
+        "True love stories never have endings. It’s about finding that one person whose soul recognizes yours, creating a sanctuary of warmth, comfort, and infinite devotion through every season of life."
+      </div>
+      <div class="quote-source">
+        — Richard Bach
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+  // Tangkap Nama Tamu dari URL ?to=Nama+Tamu
+  document.addEventListener("DOMContentLoaded", function () {
+    const urlParams = new URLSearchParams(window.location.search);
+    const guestParam = urlParams.get('to');
+    if (guestParam) {
+      let formattedName = decodeURIComponent(guestParam.replace(/\+/g, ' '));
+      document.getElementById('guestNameContainer').textContent = formattedName;
+    }
+  });
+
+  // Fungsi Transisi Saat Tombol "Buka Undangan" Diklik
+  var audio = document.getElementById("bgMusic");
+  var btn = document.getElementById("musicBtn");
+  var icon = document.getElementById("musicIcon");
+
+  function openInvitation() {
+    const cover = document.getElementById('coverSection');
+    const main = document.getElementById('mainContent');
+
+    // Fade out cover, Fade in main content secara bersamaan (~1.5s)
+    cover.classList.add('fade-out');
+    main.classList.add('fade-in');
+
+    // Scroll otomatis ke atas halaman isi
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+
+    // Mulai Putar Musik
+    audio.play().then(function() {
+      btn.classList.add("playing");
+      icon.className = "fa-solid fa-compact-disc";
+    }).catch(function(error) {
+      console.log("Autoplay dicegah browser:", error);
+    });
+  }
+
+  // Countdown Timer Script (Target: 12 Desember 2030)
+  const weddingDate = new Date("Dec 12, 2030 09:00:00").getTime();
+
+  function updateCountdown() {
+    const now = new Date().getTime();
+    const distance = weddingDate - now;
+
+    if (distance < 0) return;
+
+    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+    document.getElementById("days").innerText = String(days).padStart(2, '0');
+    document.getElementById("hours").innerText = String(hours).padStart(2, '0');
+    document.getElementById("minutes").innerText = String(minutes).padStart(2, '0');
+    document.getElementById("seconds").innerText = String(seconds).padStart(2, '0');
+  }
+
+  setInterval(updateCountdown, 1000);
+  updateCountdown();
+
+  // Tombol Toggle Musik
+  function toggleMusic() {
+    if (audio.paused) {
+      audio.play().then(function() {
+        btn.classList.add("playing");
+        icon.className = "fa-solid fa-compact-disc";
+      });
+    } else {
+      audio.pause();
+      btn.classList.remove("playing");
+      icon.className = "fa-solid fa-play";
+    }
+  }
+
+  // Sembunyikan Tombol Musik Saat Scroll ke Bawah, Munculkan Lagi Saat Berhenti
+  let scrollTimeout;
+  const container = document.getElementById("musicContainer");
+  window.addEventListener('scroll', function() {
+    if(document.getElementById('mainContent').classList.contains('fade-in')) {
+      container.classList.add("hidden");
+      clearTimeout(scrollTimeout);
+      scrollTimeout = setTimeout(function() {
+        container.classList.remove("hidden");
+      }, 300);
+    }
+  });
+</script>
+
+</body>
+</html>
