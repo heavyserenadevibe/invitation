@@ -217,23 +217,24 @@
       Tamu Undangan
     </div>
 
-    <!-- Tombol Buka Undangan dengan Link Google Sites -->
-    <!-- Tombol Buka Undangan dengan Link Google Sites -->
-<a href="https://sites.google.com/view/artbayri-pic02/home" target="_blank" id="openInvitationBtn" class="open-button scroll-animate" style="transition-delay: 0.7s;">
-  Buka Undangan
-</a>
+    <!-- Tombol Buka Undangan dengan Link Google Sites & target="_blank" -->
+    <a href="https://sites.google.com/view/artbayri-pic02/home" target="_blank" id="openInvitationBtn" class="open-button scroll-animate" style="transition-delay: 0.7s;">
+      Buka Undangan
+    </a>
 
   </div>
 </div>
 
 <script>
-  // Script untuk menangkap parameter URL ?to=Nama+Tamu
+  // Script untuk menangkap parameter URL ?to=Nama+Tamu secara otomatis
   document.addEventListener("DOMContentLoaded", function () {
     const urlParams = new URLSearchParams(window.location.search);
     const guestParam = urlParams.get('to');
     
     if (guestParam) {
-      document.getElementById('guestNameContainer').textContent = decodeURIComponent(guestParam);
+      // Mengubah format string dan memastikan spasi terbaca dengan baik
+      let formattedName = decodeURIComponent(guestParam.replace(/\+/g, ' '));
+      document.getElementById('guestNameContainer').textContent = formattedName;
     }
 
     // Script untuk Animasi Scroll (Slow & Smooth)
