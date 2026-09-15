@@ -85,7 +85,7 @@
     pointer-events: none;
   }
 
-  /* --- HALAMAN 1: COVER (Kini lengkap dengan judul & nama pengantin) --- */
+  /* --- HALAMAN 1: COVER --- */
   #coverSection {
     position: fixed;
     top: 0;
@@ -179,7 +179,7 @@
   }
 
 
-  /* --- HALAMAN 2: ISI UTAMA (AWALNYA TERSEMBUNYI) --- */
+  /* --- HALAMAN 2: ISI UTAMA --- */
   #mainContent {
     position: relative;
     width: 100%;
@@ -192,7 +192,7 @@
     flex-direction: column;
     justify-content: flex-start;
     align-items: flex-start;
-    padding: clamp(30px, 6vh, 50px) 0;
+    padding: clamp(40px, 8vh, 60px) 0;
   }
 
   #mainContent.fade-in {
@@ -210,7 +210,7 @@
 
   .hero-section {
     width: 100%;
-    padding: 0 clamp(24px, 5vw, 40px);
+    padding: clamp(30px, 5vh, 50px) clamp(24px, 5vw, 40px);
     max-width: 100%;
     display: flex;
     flex-direction: column;
@@ -218,7 +218,14 @@
     align-items: flex-start;
     text-align: left;
     position: relative;
-    margin-bottom: clamp(250px, 45vh, 450px);
+    margin-bottom: clamp(200px, 35vh, 350px);
+    
+    /* Efek Gradasi Grey di Belakang Teks (Sedikit Pudar di Atas) */
+    background: linear-gradient(180deg, rgba(40, 40, 40, 0.75) 0%, rgba(20, 20, 20, 0.45) 60%, transparent 100%);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    border-radius: 0 0 24px 24px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
   }
 
   .quote-section {
@@ -252,24 +259,26 @@
     filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.2));
   }
 
+  /* Ukuran The Wedding ditambah ~5px */
   .wedding-title {
     font-family: 'Outfit', sans-serif;
     font-weight: 300;
-    font-size: clamp(0.7rem, 1.6vw, 1rem);
-    letter-spacing: 2.5px;
+    font-size: clamp(1.05rem, 2.2vw, 1.4rem);
+    letter-spacing: 3px;
     text-transform: uppercase;
     color: #ffffff;
-    margin-bottom: 4px;
+    margin-bottom: 6px;
   }
 
+  /* Ukuran Anya & Julian ditambah ~20px */
   .couple-names {
     font-family: 'Outfit', sans-serif;
     font-weight: 700;
-    font-size: clamp(1.6rem, 5vw, 3.8rem);
+    font-size: clamp(2.6rem, 7.5vw, 5.2rem);
     line-height: 1.05;
     text-transform: uppercase;
     letter-spacing: 1px;
-    margin-bottom: 16px;
+    margin-bottom: 20px;
     display: flex;
     flex-direction: column;
     width: 100%;
@@ -285,26 +294,29 @@
   .ampersand {
     font-size: 0.6em;
     font-weight: 700;
-    margin-left: 10px;
+    margin-left: 12px;
     transform: translateY(-2px);
   }
 
+  /* Teks pembuka ditambah ~2px */
   .intro-text {
     font-family: 'Plus Jakarta Sans', sans-serif;
     font-weight: 300;
-    font-size: clamp(0.65rem, 1.1vw, 0.82rem);
-    line-height: 1.5;
-    color: rgba(255, 255, 255, 0.9);
-    margin-bottom: 25px;
+    font-size: clamp(0.82rem, 1.35vw, 1.05rem);
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.95);
+    margin-bottom: 35px; /* Tambahan jarak */
   }
 
+  /* Countdown Wrapper dengan tambahan spasi/enter sekitar 5 baris setara */
   .countdown-wrapper {
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
     align-items: center;
-    gap: clamp(6px, 2vw, 16px);
+    gap: clamp(10px, 3vw, 22px);
     width: 100%;
+    margin-top: 25px; /* Jarak atas setara beberapa enter */
     margin-bottom: 25px;
   }
 
@@ -315,26 +327,29 @@
     flex-shrink: 0;
   }
 
+  /* Ukuran Angka Countdown diperbesar ~3 kali / sedang */
   .countdown-number {
     font-family: 'Outfit', sans-serif;
     font-weight: 700;
-    font-size: clamp(1rem, 2.5vw, 1.8rem);
+    font-size: clamp(2.2rem, 5.5vw, 3.6rem);
+    line-height: 1;
   }
 
   .countdown-label {
     font-family: 'Plus Jakarta Sans', sans-serif;
     font-weight: 300;
-    font-size: clamp(0.48rem, 0.75vw, 0.6rem);
+    font-size: clamp(0.65rem, 1vw, 0.8rem);
     text-transform: uppercase;
-    letter-spacing: 1px;
-    color: rgba(255, 255, 255, 0.75);
-    margin-top: 1px;
+    letter-spacing: 1.5px;
+    color: rgba(255, 255, 255, 0.85);
+    margin-top: 6px;
   }
 
-  /* Floating Music Button */
+  /* Floating Music Button di Ujung Bawah Kanan Layar */
   .floating-music-container {
-    display: block;
-    position: relative;
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
     z-index: 2147483647;
     opacity: 1;
     visibility: visible;
@@ -347,18 +362,18 @@
   }
 
   .pastel-btn {
-    width: clamp(38px, 8vw, 42px);
-    height: clamp(38px, 8vw, 42px);
+    width: 48px;
+    height: 48px;
     border-radius: 50%;
-    background: rgba(255, 255, 255, 0.2);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.5);
+    background: rgba(255, 255, 255, 0.25);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.6);
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
-    box-shadow: 0 4px 16px 0 rgba(0, 0, 0, 0.2), inset 0 0 8px rgba(255, 255, 255, 0.5);
+    box-shadow: 0 6px 20px 0 rgba(0, 0, 0, 0.3), inset 0 0 10px rgba(255, 255, 255, 0.6);
     position: relative;
     overflow: hidden;
     outline: none;
@@ -385,12 +400,12 @@
   }
 
   .pastel-btn:hover {
-    transform: scale(1.08);
-    background: rgba(255, 255, 255, 0.35);
+    transform: scale(1.1);
+    background: rgba(255, 255, 255, 0.4);
   }
 
   .pastel-btn i {
-    font-size: clamp(0.8rem, 1.8vw, 0.95rem);
+    font-size: 1.1rem;
     color: #ffffff;
     text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
     z-index: 2;
@@ -414,7 +429,7 @@
     font-weight: 400;
     font-size: 13px;
     line-height: 1.8;
-    color: #1a1a1a; /* Teks Hitam Kontras */
+    color: #1a1a1a;
     text-align: center;
     max-width: 600px;
   }
@@ -424,7 +439,7 @@
     font-weight: 600;
     font-style: italic;
     font-size: 11px;
-    color: #4a4a4a; /* Teks Hitam Abu Gelap */
+    color: #4a4a4a;
     margin-top: 16px;
     text-align: center;
     letter-spacing: 1px;
@@ -457,7 +472,7 @@
 <!-- Overlay Gelap -->
 <div class="overlay-bg"></div>
 
-<!-- BAGIAN 1: HALAMAN COVER (Lengkap dengan Judul & Nama Pengantin) -->
+<!-- BAGIAN 1: HALAMAN COVER -->
 <section id="coverSection">
   <div class="cover-container">
     <div class="wedding-title" style="margin-bottom: 8px;">The Wedding Of</div>
@@ -481,11 +496,11 @@
   </div>
 </section>
 
-<!-- BAGIAN 2: HALAMAN ISI UTAMA (Muncul Perlahan Saat Tombol Diklik) -->
+<!-- BAGIAN 2: HALAMAN ISI UTAMA -->
 <div id="mainContent">
   <div class="invitation-wrapper">
     
-    <!-- Hero Section -->
+    <!-- Hero Section dengan Gradasi Grey & Penataan Ukuran -->
     <div class="hero-section">
       <div class="wedding-title">The Wedding Of</div>
       
@@ -503,38 +518,31 @@
         Together with our families, with great joy and warmth in our hearts, we cordially invite you to celebrate the joyous occasion of our marriage. Your presence will make our special day truly complete.
       </div>
 
-      <!-- Countdown -->
+      <!-- Countdown dengan Ukuran Sedang & Jarak Extra -->
       <div class="countdown-wrapper">
         <div class="countdown-box">
           <div id="days" class="countdown-number gradient-glow-text">00</div>
           <div class="countdown-label">Days</div>
         </div>
-        <div class="countdown-box"><span class="countdown-number gradient-glow-text">I</span></div>
+        <div class="countdown-box"><span class="countdown-number gradient-glow-text" style="font-size: clamp(1.5rem, 3vw, 2.2rem);">I</span></div>
         <div class="countdown-box">
           <div id="hours" class="countdown-number gradient-glow-text">00</div>
           <div class="countdown-label">Hours</div>
         </div>
-        <div class="countdown-box"><span class="countdown-number gradient-glow-text">I</span></div>
+        <div class="countdown-box"><span class="countdown-number gradient-glow-text" style="font-size: clamp(1.5rem, 3vw, 2.2rem);">I</span></div>
         <div class="countdown-box">
           <div id="minutes" class="countdown-number gradient-glow-text">00</div>
           <div class="countdown-label">Minutes</div>
         </div>
-        <div class="countdown-box"><span class="countdown-number gradient-glow-text">I</span></div>
+        <div class="countdown-box"><span class="countdown-number gradient-glow-text" style="font-size: clamp(1.5rem, 3vw, 2.2rem);">I</span></div>
         <div class="countdown-box">
           <div id="seconds" class="countdown-number gradient-glow-text">00</div>
           <div class="countdown-label">Seconds</div>
         </div>
       </div>
-
-      <!-- Tombol Musik -->
-      <div class="floating-music-container" id="musicContainer">
-        <button id="musicBtn" onclick="toggleMusic()" class="pastel-btn playing" aria-label="Toggle Musik">
-          <i id="musicIcon" class="fa-solid fa-compact-disc"></i>
-        </button>
-      </div>
     </div>
 
-    <!-- Section Love Quote Full Kiri-Kanan, White Blurry, Teks Hitam -->
+    <!-- Section Love Quote -->
     <div class="quote-section">
       <div class="quote-text">
         "True love stories never have endings. It’s about finding that one person whose soul recognizes yours, creating a sanctuary of warmth, comfort, and infinite devotion through every season of life."
@@ -545,6 +553,13 @@
     </div>
 
   </div>
+</div>
+
+<!-- Tombol Musik Mengambang di Ujung Bawah Kanan -->
+<div class="floating-music-container" id="musicContainer">
+  <button id="musicBtn" onclick="toggleMusic()" class="pastel-btn playing" aria-label="Toggle Musik">
+    <i id="musicIcon" class="fa-solid fa-compact-disc"></i>
+  </button>
 </div>
 
 <script>
