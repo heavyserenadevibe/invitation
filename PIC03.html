@@ -7,7 +7,7 @@
 <!-- Mengimpor Google Font & FontAwesome -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Outfit:ital,wght@0,300;0,400;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;700&family=Montserrat:wght@300;400;500;600&family=Yeseva+One&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Allison&family=Abril+Fatface&family=Outfit:ital,wght@0,300;0,400;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
 <style>
@@ -191,7 +191,7 @@
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    align-items: flex-start;
+    align-items: center;
     padding: 0;
   }
 
@@ -201,47 +201,41 @@
   }
 
   .invitation-wrapper {
+    position: relative;
     width: 100%;
+    max-width: 600px;
+    min-height: 100vh;
+    padding: clamp(20px, 3vw, 40px) clamp(15px, 3vw, 30px);
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
-    align-items: flex-start;
+    align-items: center;
+  }
+
+  .border-frame {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    right: 15px;
+    bottom: 15px;
+    border: 1px solid rgba(166, 166, 166, 0.4);
+    box-shadow: 0 0 15px rgba(166, 166, 166, 0.15);
+    pointer-events: none;
+    z-index: 10;
   }
 
   .hero-section {
     width: 100%;
-    /* Gradasi mentok dari ujung paling atas layar, tanpa border/shape kotak */
     padding: clamp(60px, 12vh, 90px) clamp(24px, 5vw, 40px) clamp(50px, 10vh, 80px) clamp(24px, 5vw, 40px);
-    max-width: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: flex-start;
     text-align: left;
     position: relative;
-    /* Jarak bawah diperbesar agar countdown turun jauh ke bawah & layar penuh */
-    margin-bottom: clamp(350px, 60vh, 650px);
-    
+    margin-bottom: clamp(150px, 25vh, 300px);
     background: linear-gradient(180deg, rgba(30, 30, 30, 0.85) 0%, rgba(20, 20, 20, 0.5) 50%, transparent 100%);
     backdrop-filter: blur(3px);
     -webkit-backdrop-filter: blur(3px);
-  }
-
-  .quote-section {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    /* Posisi quote ditaruh lebih jauh ke bawah */
-    padding: clamp(50px, 8vh, 70px) clamp(24px, 6vw, 60px);
-    background: rgba(255, 255, 255, 0.65); /* White blurry */
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
-    border-top: 1px solid rgba(255, 255, 255, 0.8);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.8);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-    z-index: 11;
   }
 
   @keyframes gradientFlow {
@@ -340,6 +334,218 @@
     margin-top: 6px;
   }
 
+  /* --- GABUNGAN SECTION QUOTE & PROFIL DENGAN BACKGROUND PUTIH OPASITAS 60% --- */
+  .combined-content-section {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: clamp(50px, 8vh, 80px) clamp(20px, 5vw, 40px);
+    background: rgba(255, 255, 255, 0.6); /* Opasitas background 60% */
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-top: 1px solid rgba(255, 255, 255, 0.8);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.8);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    z-index: 11;
+    color: #1a1a1a; /* Teks default di dalam container putih menjadi gelap agar kontras */
+  }
+
+  /* Keyframes Animasi Scroll Dua Arah (Muncul & Menghilang Pudar) */
+  .scroll-animate {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1), transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: opacity, transform;
+  }
+
+  .scroll-animate.active {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Penyesuaian Teks di dalam Container Putih */
+  .combined-content-section .wedding-title-main {
+    font-family: 'Outfit', sans-serif;
+    font-weight: 300;
+    font-size: clamp(0.7rem, 1.5vw, 1rem);
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: #4a4a4a;
+    margin-bottom: 4px;
+  }
+
+  .combined-content-section .wedding-names-sub {
+    font-family: 'Allison', cursive;
+    font-weight: 400;
+    font-size: clamp(2.5rem, 7vw, 4.5rem);
+    color: #1a1a1a;
+    margin-bottom: clamp(25px, 4vh, 40px);
+    line-height: 1;
+    white-space: nowrap;
+  }
+
+  .quote-box-inside {
+    width: 100%;
+    max-width: 550px;
+    margin-bottom: clamp(50px, 8vh, 80px);
+    padding-bottom: 40px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.15);
+  }
+
+  .quote-text {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-weight: 400;
+    font-size: clamp(0.85rem, 1.4vw, 1.05rem);
+    line-height: 1.8;
+    color: #2c2c2c;
+    text-align: center;
+    font-style: italic;
+  }
+
+  .quote-source {
+    font-family: 'Outfit', sans-serif;
+    font-weight: 600;
+    font-size: clamp(0.75rem, 1.1vw, 0.9rem);
+    color: #555555;
+    margin-top: 14px;
+    text-align: center;
+    letter-spacing: 1px;
+    font-style: normal;
+  }
+
+  .invitation-text-profile {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-weight: 300;
+    font-size: clamp(0.7rem, 1.15vw, 0.88rem);
+    line-height: 1.6;
+    color: #333333;
+    margin-bottom: 14px;
+    text-align: center;
+    width: 100%;
+    max-width: 550px;
+    padding: 0 10px;
+  }
+
+  .salam-text {
+    font-style: italic;
+    font-weight: 300;
+    margin-bottom: 16px;
+    text-align: center;
+  }
+
+  .profile-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    margin-top: clamp(20px, 3vh, 35px);
+    perspective: 1000px;
+  }
+
+  .photo-container {
+    position: relative;
+    width: 110px;
+    height: 110px;
+    margin-bottom: 15px;
+  }
+
+  .circle-frame {
+    position: absolute;
+    top: -4.5px;
+    left: -4.5px;
+    right: -4.5px;
+    bottom: -4.5px;
+    border-radius: 50%;
+    border: 2px solid transparent;
+    background: linear-gradient(270deg, #333333, #888888, #555555, #333333) border-box;
+    -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1), opacity 1.2s ease;
+    transform: rotateY(180deg) scale(0.9);
+    opacity: 0;
+  }
+
+  .profile-photo {
+    width: 110px;
+    height: 110px;
+    border-radius: 50%;
+    object-fit: cover;
+    transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1), opacity 1.2s ease;
+    transform: rotateY(-180deg) scale(0.9);
+    opacity: 0;
+    filter: drop-shadow(0 4px 10px rgba(0,0,0,0.15));
+  }
+
+  .profile-section.active .profile-photo {
+    transform: rotateY(0deg) scale(1);
+    opacity: 1;
+  }
+
+  .profile-section.active .circle-frame {
+    transform: rotateY(180deg) scale(1);
+    opacity: 1;
+  }
+
+  .role-title {
+    font-family: 'Allison', cursive;
+    font-weight: 300;
+    font-size: clamp(1.8rem, 4vw, 2.6rem);
+    color: #4a4a4a;
+    letter-spacing: 2px;
+    margin-bottom: 3px;
+  }
+
+  .couple-fullname {
+    font-family: 'Abril Fatface', serif;
+    font-size: clamp(1.3rem, 3.5vw, 2.4rem);
+    letter-spacing: 1px;
+    margin-bottom: 6px;
+    white-space: nowrap;
+    color: #1a1a1a;
+  }
+
+  .parent-info {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-weight: 300;
+    font-size: clamp(0.65rem, 1vw, 0.8rem);
+    color: #555555;
+    margin-bottom: 12px;
+  }
+
+  .ig-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 16px;
+    border-radius: 50px;
+    background: rgba(0, 0, 0, 0.06);
+    backdrop-filter: blur(5px);
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    color: #1a1a1a;
+    font-size: 0.75rem;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    margin-bottom: 15px;
+  }
+
+  .ig-btn:hover {
+    background: rgba(0, 0, 0, 0.12);
+    transform: scale(1.05);
+  }
+
+  .divider-word {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-weight: 400;
+    font-size: clamp(0.6rem, 1vw, 0.75rem);
+    letter-spacing: 4px;
+    color: #666666;
+    margin: clamp(20px, 3vh, 30px) 0;
+    text-transform: uppercase;
+  }
+
   /* Floating Music Button di Ujung Bawah Kanan */
   .floating-music-container {
     position: fixed;
@@ -418,27 +624,6 @@
   .playing {
     animation: spin 4s linear infinite;
   }
-
-  .quote-text {
-    font-family: 'Plus Jakarta Sans', sans-serif;
-    font-weight: 400;
-    font-size: 13px;
-    line-height: 1.8;
-    color: #1a1a1a;
-    text-align: center;
-    max-width: 600px;
-  }
-
-  .quote-source {
-    font-family: 'Outfit', sans-serif;
-    font-weight: 600;
-    font-style: italic;
-    font-size: 11px;
-    color: #4a4a4a;
-    margin-top: 16px;
-    text-align: center;
-    letter-spacing: 1px;
-  }
 </style>
 </head>
 <body>
@@ -494,6 +679,7 @@
 <!-- BAGIAN 2: HALAMAN ISI UTAMA -->
 <div id="mainContent">
   <div class="invitation-wrapper">
+    <div class="border-frame"></div>
     
     <!-- Hero Section dengan Gradasi Mentok ke Atas & Tanpa Shape Kotak -->
     <div class="hero-section">
@@ -537,14 +723,65 @@
       </div>
     </div>
 
-    <!-- Section Love Quote (Ditaruh Jauh ke Bawah) -->
-    <div class="quote-section">
-      <div class="quote-text">
-        "True love stories never have endings. It’s about finding that one person whose soul recognizes yours, creating a sanctuary of warmth, comfort, and infinite devotion through every season of life."
+    <!-- Gabungan Section Quote & Profil dengan Background Putih Opasitas 60% -->
+    <div class="combined-content-section">
+      
+      <!-- Quotes di Bagian Atas Container -->
+      <div class="quote-box-inside scroll-animate">
+        <div class="quote-text">
+          "True love stories never have endings. It’s about finding that one person whose soul recognizes yours, creating a sanctuary of warmth, comfort, and infinite devotion through every season of life."
+        </div>
+        <div class="quote-source">
+          — Richard Bach
+        </div>
       </div>
-      <div class="quote-source">
-        — Richard Bach
+
+      <!-- Judul & Profil Pengantin -->
+      <div class="wedding-title-main scroll-animate">The Wedding</div>
+      <div class="wedding-names-sub scroll-animate" style="transition-delay: 0.2s;">Anya and Julian</div>
+
+      <div class="invitation-text-profile salam-text scroll-animate" style="transition-delay: 0.4s;">
+        Assalamu'alaikum Warahmatullahi Wabarakatuh.<br>
+        Puji dan syukur kita ucapkan atas berkat dan rahmat-Nya. Semoga kita semua diberi kesehatan dan kemudahan dalam setiap urusan.
       </div>
+
+      <div class="invitation-text-profile scroll-animate" style="transition-delay: 0.5s;">
+        Dengan memohon rahmat dan rida Allah SWT, kami bermaksud mengundang Bapak/Ibu/Saudara/i untuk menghadiri acara pernikahan putra-putri kami.
+      </div>
+
+      <!-- Profil Pengantin Pertama (Bride - Anya) -->
+      <div class="profile-section scroll-animate" style="transition-delay: 0.6s;">
+        <div class="photo-container">
+          <div class="circle-frame"></div>
+          <img src="https://lh3.googleusercontent.com/d/1BVlwEuhu_FRbFnaCmEl1iPOVFrwpIPRz" alt="Anya Sivana" class="profile-photo">
+        </div>
+        <div class="role-title">– Bride –</div>
+        <div class="couple-fullname">ANYA SIVANA</div>
+        <div class="parent-info">Putri Pertama dari Bapak Budi & Ibu Budi</div>
+        <a href="https://instagram.com/skycovershop" target="_blank" class="ig-btn">
+          <i class="fa-brands fa-instagram"></i> skycovershop
+        </a>
+      </div>
+
+      <!-- Teks Penghubung "D E N G A N" -->
+      <div class="divider-word scroll-animate" style="transition-delay: 0.7s;">
+        D &nbsp; E &nbsp; N &nbsp; G &nbsp; A &nbsp; N
+      </div>
+
+      <!-- Profil Pengantin Kedua (Groom - Julian) -->
+      <div class="profile-section scroll-animate" style="transition-delay: 0.8s;">
+        <div class="photo-container">
+          <div class="circle-frame"></div>
+          <img src="https://lh3.googleusercontent.com/d/1_v1FT9fp7kSlWNi_vGxsnsgKZkzC0OPn" alt="Julian Asher" class="profile-photo">
+        </div>
+        <div class="role-title">– Groom –</div>
+        <div class="couple-fullname">JULIAN ASHER</div>
+        <div class="parent-info">Putra Pertama dari Bapak Budi & Ibu Budi</div>
+        <a href="https://instagram.com/skycovershop" target="_blank" class="ig-btn">
+          <i class="fa-brands fa-instagram"></i> skycovershop
+        </a>
+      </div>
+
     </div>
 
   </div>
@@ -577,14 +814,11 @@
     const cover = document.getElementById('coverSection');
     const main = document.getElementById('mainContent');
 
-    // Fade out cover, Fade in main content secara bersamaan (~1.5s)
     cover.classList.add('fade-out');
     main.classList.add('fade-in');
 
-    // Scroll otomatis ke atas halaman isi
     window.scrollTo({ top: 0, behavior: 'smooth' });
 
-    // Mulai Putar Musik
     audio.play().then(function() {
       btn.classList.add("playing");
       icon.className = "fa-solid fa-compact-disc";
@@ -641,6 +875,28 @@
         container.classList.remove("hidden");
       }, 300);
     }
+  });
+
+  // Script untuk Animasi Scroll Dua Arah (Muncul dan Menghilang Pudar)
+  document.addEventListener("DOMContentLoaded", function () {
+    const observerOptions = {
+      root: null,
+      rootMargin: '0px',
+      threshold: 0.15
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('active');
+        } else {
+          entry.target.classList.remove('active');
+        }
+      });
+    }, observerOptions);
+
+    const animatedElements = document.querySelectorAll('.scroll-animate, .profile-section');
+    animatedElements.forEach(el => observer.observe(el));
   });
 </script>
 
