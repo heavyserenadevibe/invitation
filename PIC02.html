@@ -23,7 +23,7 @@
     min-height: 100vh;
   }
 
-  /* Overlay opsional agar teks lebih terbaca jika background terlalu terang (bisa dihapus jika tidak diperlukan) */
+  /* Overlay opsional agar teks lebih terbaca */
   body::before {
     content: '';
     position: fixed;
@@ -31,7 +31,7 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.3); /* Lapisan gelap transparan 30% */
+    background-color: rgba(0, 0, 0, 0.3);
     z-index: 1;
   }
 
@@ -45,7 +45,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    z-index: 2; /* Agar berada di atas overlay background */
+    z-index: 2;
   }
 
   .invitation-container {
@@ -217,8 +217,7 @@
       Tamu Undangan
     </div>
 
-    <!-- Tombol Buka Undangan -->
-    <!-- Ganti link di bawah dengan link Google Sites halaman berikutnya -->
+    <!-- Tombol Buka Undangan dengan Link Google Sites -->
     <a href="https://sites.google.com/view/artbayri-pic02/home" id="openInvitationBtn" class="open-button scroll-animate" style="transition-delay: 0.7s;">
       Buka Undangan
     </a>
