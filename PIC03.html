@@ -192,7 +192,7 @@
     flex-direction: column;
     justify-content: flex-start;
     align-items: flex-start;
-    padding: clamp(40px, 8vh, 60px) 0;
+    padding: 0;
   }
 
   #mainContent.fade-in {
@@ -210,7 +210,8 @@
 
   .hero-section {
     width: 100%;
-    padding: clamp(30px, 5vh, 50px) clamp(24px, 5vw, 40px);
+    /* Gradasi mentok dari ujung paling atas layar, tanpa border/shape kotak */
+    padding: clamp(60px, 12vh, 90px) clamp(24px, 5vw, 40px) clamp(50px, 10vh, 80px) clamp(24px, 5vw, 40px);
     max-width: 100%;
     display: flex;
     flex-direction: column;
@@ -218,14 +219,12 @@
     align-items: flex-start;
     text-align: left;
     position: relative;
-    margin-bottom: clamp(200px, 35vh, 350px);
+    /* Jarak bawah diperbesar agar countdown turun jauh ke bawah & layar penuh */
+    margin-bottom: clamp(350px, 60vh, 650px);
     
-    /* Efek Gradasi Grey di Belakang Teks (Sedikit Pudar di Atas) */
-    background: linear-gradient(180deg, rgba(40, 40, 40, 0.75) 0%, rgba(20, 20, 20, 0.45) 60%, transparent 100%);
-    backdrop-filter: blur(4px);
-    -webkit-backdrop-filter: blur(4px);
-    border-radius: 0 0 24px 24px;
-    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+    background: linear-gradient(180deg, rgba(30, 30, 30, 0.85) 0%, rgba(20, 20, 20, 0.5) 50%, transparent 100%);
+    backdrop-filter: blur(3px);
+    -webkit-backdrop-filter: blur(3px);
   }
 
   .quote-section {
@@ -234,7 +233,8 @@
     flex-direction: column;
     align-items: center;
     text-align: center;
-    padding: clamp(32px, 5vh, 48px) clamp(24px, 6vw, 60px);
+    /* Posisi quote ditaruh lebih jauh ke bawah */
+    padding: clamp(50px, 8vh, 70px) clamp(24px, 6vw, 60px);
     background: rgba(255, 255, 255, 0.65); /* White blurry */
     backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
@@ -259,7 +259,6 @@
     filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.2));
   }
 
-  /* Ukuran The Wedding ditambah ~5px */
   .wedding-title {
     font-family: 'Outfit', sans-serif;
     font-weight: 300;
@@ -270,7 +269,6 @@
     margin-bottom: 6px;
   }
 
-  /* Ukuran Anya & Julian ditambah ~20px */
   .couple-names {
     font-family: 'Outfit', sans-serif;
     font-weight: 700;
@@ -298,17 +296,15 @@
     transform: translateY(-2px);
   }
 
-  /* Teks pembuka ditambah ~2px */
   .intro-text {
     font-family: 'Plus Jakarta Sans', sans-serif;
     font-weight: 300;
     font-size: clamp(0.82rem, 1.35vw, 1.05rem);
     line-height: 1.6;
     color: rgba(255, 255, 255, 0.95);
-    margin-bottom: 35px; /* Tambahan jarak */
+    margin-bottom: 35px;
   }
 
-  /* Countdown Wrapper dengan tambahan spasi/enter sekitar 5 baris setara */
   .countdown-wrapper {
     display: flex;
     flex-direction: row;
@@ -316,8 +312,8 @@
     align-items: center;
     gap: clamp(10px, 3vw, 22px);
     width: 100%;
-    margin-top: 25px; /* Jarak atas setara beberapa enter */
-    margin-bottom: 25px;
+    margin-top: 30px;
+    margin-bottom: 10px;
   }
 
   .countdown-box {
@@ -327,7 +323,6 @@
     flex-shrink: 0;
   }
 
-  /* Ukuran Angka Countdown diperbesar ~3 kali / sedang */
   .countdown-number {
     font-family: 'Outfit', sans-serif;
     font-weight: 700;
@@ -345,7 +340,7 @@
     margin-top: 6px;
   }
 
-  /* Floating Music Button di Ujung Bawah Kanan Layar */
+  /* Floating Music Button di Ujung Bawah Kanan */
   .floating-music-container {
     position: fixed;
     bottom: 24px;
@@ -500,7 +495,7 @@
 <div id="mainContent">
   <div class="invitation-wrapper">
     
-    <!-- Hero Section dengan Gradasi Grey & Penataan Ukuran -->
+    <!-- Hero Section dengan Gradasi Mentok ke Atas & Tanpa Shape Kotak -->
     <div class="hero-section">
       <div class="wedding-title">The Wedding Of</div>
       
@@ -518,7 +513,7 @@
         Together with our families, with great joy and warmth in our hearts, we cordially invite you to celebrate the joyous occasion of our marriage. Your presence will make our special day truly complete.
       </div>
 
-      <!-- Countdown dengan Ukuran Sedang & Jarak Extra -->
+      <!-- Countdown -->
       <div class="countdown-wrapper">
         <div class="countdown-box">
           <div id="days" class="countdown-number gradient-glow-text">00</div>
@@ -542,7 +537,7 @@
       </div>
     </div>
 
-    <!-- Section Love Quote -->
+    <!-- Section Love Quote (Ditaruh Jauh ke Bawah) -->
     <div class="quote-section">
       <div class="quote-text">
         "True love stories never have endings. It’s about finding that one person whose soul recognizes yours, creating a sanctuary of warmth, comfort, and infinite devotion through every season of life."
