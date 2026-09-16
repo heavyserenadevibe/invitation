@@ -189,9 +189,7 @@
     transition: opacity 1.5s cubic-bezier(0.16, 1, 0.3, 1), visibility 1.5s ease;
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
     align-items: center;
-    padding: 0;
   }
 
   #mainContent.fade-in {
@@ -203,8 +201,6 @@
     position: relative;
     width: 100%;
     max-width: 600px;
-    min-height: 100vh;
-    padding: clamp(20px, 3vw, 40px) clamp(15px, 3vw, 30px);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -222,19 +218,15 @@
     z-index: 10;
   }
 
-  /* Hero Section Full Kiri-Kanan */
+  /* Hero Section dengan Background Gradasi Full Kiri-Kanan & Konten di Tengah */
   .hero-section {
-    position: absolute;
-    top: 0;
-    left: 0;
     width: 100vw;
-    padding: clamp(80px, 15vh, 120px) 24px clamp(60px, 10vh, 90px) 24px;
+    padding: clamp(80px, 15vh, 120px) 24px clamp(80px, 12vh, 100px) 24px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     text-align: center;
-    margin-bottom: 0;
     background: linear-gradient(180deg, rgba(30, 30, 30, 0.9) 0%, rgba(20, 20, 20, 0.6) 60%, transparent 100%);
     backdrop-filter: blur(3px);
     -webkit-backdrop-filter: blur(3px);
@@ -302,7 +294,7 @@
     line-height: 1.6;
     color: rgba(255, 255, 255, 0.95);
     margin-bottom: 35px;
-    max-width: 600px;
+    max-width: 550px;
   }
 
   .countdown-wrapper {
@@ -341,18 +333,15 @@
     margin-top: 6px;
   }
 
-  /* --- GABUNGAN SECTION QUOTE & PROFIL DENGAN BACKGROUND PUTIH OPASITAS 50% & FULL KIRI KANAN --- */
+  /* --- GABUNGAN SECTION QUOTE & PROFIL (Full Kiri-Kanan, Opasitas Background 50%) --- */
   .combined-content-section {
-    position: absolute;
-    top: calc(100vh + 50vh); /* Mengatur jarak agar berada di bawah hero section */
-    left: 0;
     width: 100vw;
     display: flex;
     flex-direction: column;
     align-items: center;
     text-align: center;
     padding: clamp(80px, 12vh, 120px) clamp(20px, 5vw, 40px);
-    background: rgba(255, 255, 255, 0.5); /* Opasitas background diturunkan menjadi 50% */
+    background: rgba(255, 255, 255, 0.5); /* Opasitas 50% */
     backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
     border-top: 1px solid rgba(255, 255, 255, 0.8);
@@ -398,8 +387,8 @@
   .quote-box-inside {
     width: 100%;
     max-width: 650px;
-    margin-bottom: clamp(80px, 12vh, 120px); /* Tambahan padding jarak antar elemen */
-    padding-bottom: 60px;
+    margin-bottom: clamp(60px, 10vh, 100px);
+    padding-bottom: 180px;
     border-bottom: 1px solid rgba(0, 0, 0, 0.15);
   }
 
@@ -689,111 +678,111 @@
 <div id="mainContent">
   <div class="invitation-wrapper">
     <div class="border-frame"></div>
+  </div>
+
+  <!-- Hero Section Full Kiri-Kanan -->
+  <div class="hero-section">
+    <div class="wedding-title">The Wedding Of</div>
     
-    <!-- Hero Section Full Kiri-Kanan -->
-    <div class="hero-section">
-      <div class="wedding-title">The Wedding Of</div>
-      
-      <div class="couple-names">
-        <div class="line-name">
-          <span class="gradient-glow-text">Anya</span>
-          <span class="ampersand gradient-glow-text">&</span>
-        </div>
-        <div class="line-name">
-          <span class="gradient-glow-text">Julian</span>
-        </div>
+    <div class="couple-names">
+      <div class="line-name">
+        <span class="gradient-glow-text">Anya</span>
+        <span class="ampersand gradient-glow-text">&</span>
       </div>
-
-      <div class="intro-text">
-        Together with our families, with great joy and warmth in our hearts, we cordially invite you to celebrate the joyous occasion of our marriage. Your presence will make our special day truly complete.
-      </div>
-
-      <!-- Countdown -->
-      <div class="countdown-wrapper">
-        <div class="countdown-box">
-          <div id="days" class="countdown-number gradient-glow-text">00</div>
-          <div class="countdown-label">Days</div>
-        </div>
-        <div class="countdown-box"><span class="countdown-number gradient-glow-text" style="font-size: clamp(1.5rem, 3vw, 2.2rem);">I</span></div>
-        <div class="countdown-box">
-          <div id="hours" class="countdown-number gradient-glow-text">00</div>
-          <div class="countdown-label">Hours</div>
-        </div>
-        <div class="countdown-box"><span class="countdown-number gradient-glow-text" style="font-size: clamp(1.5rem, 3vw, 2.2rem);">I</span></div>
-        <div class="countdown-box">
-          <div id="minutes" class="countdown-number gradient-glow-text">00</div>
-          <div class="countdown-label">Minutes</div>
-        </div>
-        <div class="countdown-box"><span class="countdown-number gradient-glow-text" style="font-size: clamp(1.5rem, 3vw, 2.2rem);">I</span></div>
-        <div class="countdown-box">
-          <div id="seconds" class="countdown-number gradient-glow-text">00</div>
-          <div class="countdown-label">Seconds</div>
-        </div>
+      <div class="line-name">
+        <span class="gradient-glow-text">Julian</span>
       </div>
     </div>
 
-    <!-- Gabungan Section Quote & Profil dengan Background Putih Opasitas 50% & Full Layar -->
-    <div class="combined-content-section">
-      
-      <!-- Quotes di Bagian Atas Container -->
-      <div class="quote-box-inside scroll-animate">
-        <div class="quote-text">
-          "True love stories never have endings. It’s about finding that one person whose soul recognizes yours, creating a sanctuary of warmth, comfort, and infinite devotion through every season of life."
-        </div>
-        <div class="quote-source">
-          — Richard Bach
-        </div>
+    <div class="intro-text">
+      Together with our families, with great joy and warmth in our hearts, we cordially invite you to celebrate the joyous occasion of our marriage. Your presence will make our special day truly complete.
+    </div>
+
+    <!-- Countdown -->
+    <div class="countdown-wrapper">
+      <div class="countdown-box">
+        <div id="days" class="countdown-number gradient-glow-text">00</div>
+        <div class="countdown-label">Days</div>
       </div>
-
-      <!-- Judul & Profil Pengantin -->
-      <div class="wedding-title-main scroll-animate">The Wedding</div>
-      <div class="wedding-names-sub scroll-animate" style="transition-delay: 0.2s;">Anya and Julian</div>
-
-      <div class="invitation-text-profile salam-text scroll-animate" style="transition-delay: 0.4s;">
-        Assalamu'alaikum Warahmatullahi Wabarakatuh.<br>
-        Puji dan syukur kita ucapkan atas berkat dan rahmat-Nya. Semoga kita semua diberi kesehatan dan kemudahan dalam setiap urusan.
+      <div class="countdown-box"><span class="countdown-number gradient-glow-text" style="font-size: clamp(1.5rem, 3vw, 2.2rem);">I</span></div>
+      <div class="countdown-box">
+        <div id="hours" class="countdown-number gradient-glow-text">00</div>
+        <div class="countdown-label">Hours</div>
       </div>
-
-      <div class="invitation-text-profile scroll-animate" style="transition-delay: 0.5s;">
-        Dengan memohon rahmat dan rida Allah SWT, kami bermaksud mengundang Bapak/Ibu/Saudara/i untuk menghadiri acara pernikahan putra-putri kami.
+      <div class="countdown-box"><span class="countdown-number gradient-glow-text" style="font-size: clamp(1.5rem, 3vw, 2.2rem);">I</span></div>
+      <div class="countdown-box">
+        <div id="minutes" class="countdown-number gradient-glow-text">00</div>
+        <div class="countdown-label">Minutes</div>
       </div>
-
-      <!-- Profil Pengantin Pertama (Bride - Anya) -->
-      <div class="profile-section scroll-animate" style="transition-delay: 0.6s;">
-        <div class="photo-container">
-          <div class="circle-frame"></div>
-          <img src="https://lh3.googleusercontent.com/d/1BVlwEuhu_FRbFnaCmEl1iPOVFrwpIPRz" alt="Anya Sivana" class="profile-photo">
-        </div>
-        <div class="role-title">– Bride –</div>
-        <div class="couple-fullname">ANYA SIVANA</div>
-        <div class="parent-info">Putri Pertama dari Bapak Budi & Ibu Budi</div>
-        <a href="https://instagram.com/skycovershop" target="_blank" class="ig-btn">
-          <i class="fa-brands fa-instagram"></i> skycovershop
-        </a>
+      <div class="countdown-box"><span class="countdown-number gradient-glow-text" style="font-size: clamp(1.5rem, 3vw, 2.2rem);">I</span></div>
+      <div class="countdown-box">
+        <div id="seconds" class="countdown-number gradient-glow-text">00</div>
+        <div class="countdown-label">Seconds</div>
       </div>
+    </div>
+  </div>
 
-      <!-- Teks Penghubung "D E N G A N" -->
-      <div class="divider-word scroll-animate" style="transition-delay: 0.7s;">
-        D &nbsp; E &nbsp; N &nbsp; G &nbsp; A &nbsp; N
+  <!-- Gabungan Section Quote & Profil dengan Background Putih Opasitas 50% & Full Layar -->
+  <div class="combined-content-section">
+    
+    <!-- Quotes di Bagian Atas Container -->
+    <div class="quote-box-inside scroll-animate">
+      <div class="quote-text">
+        "True love stories never have endings. It’s about finding that one person whose soul recognizes yours, creating a sanctuary of warmth, comfort, and infinite devotion through every season of life."
       </div>
-
-      <!-- Profil Pengantin Kedua (Groom - Julian) -->
-      <div class="profile-section scroll-animate" style="transition-delay: 0.8s;">
-        <div class="photo-container">
-          <div class="circle-frame"></div>
-          <img src="https://lh3.googleusercontent.com/d/1_v1FT9fp7kSlWNi_vGxsnsgKZkzC0OPn" alt="Julian Asher" class="profile-photo">
-        </div>
-        <div class="role-title">– Groom –</div>
-        <div class="couple-fullname">JULIAN ASHER</div>
-        <div class="parent-info">Putra Pertama dari Bapak Budi & Ibu Budi</div>
-        <a href="https://instagram.com/skycovershop" target="_blank" class="ig-btn">
-          <i class="fa-brands fa-instagram"></i> skycovershop
-        </a>
+      <div class="quote-source">
+        — Richard Bach
       </div>
+    </div>
 
+    <!-- Judul & Profil Pengantin -->
+    <div class="wedding-title-main scroll-animate">The Wedding</div>
+    <div class="wedding-names-sub scroll-animate" style="transition-delay: 0.2s;">Anya and Julian</div>
+
+    <div class="invitation-text-profile salam-text scroll-animate" style="transition-delay: 0.4s;">
+      Assalamu'alaikum Warahmatullahi Wabarakatuh.<br>
+      Puji dan syukur kita ucapkan atas berkat dan rahmat-Nya. Semoga kita semua diberi kesehatan dan kemudahan dalam setiap urusan.
+    </div>
+
+    <div class="invitation-text-profile scroll-animate" style="transition-delay: 0.5s;">
+      Dengan memohon rahmat dan rida Allah SWT, kami bermaksud mengundang Bapak/Ibu/Saudara/i untuk menghadiri acara pernikahan putra-putri kami.
+    </div>
+
+    <!-- Profil Pengantin Pertama (Bride - Anya) -->
+    <div class="profile-section scroll-animate" style="transition-delay: 0.6s;">
+      <div class="photo-container">
+        <div class="circle-frame"></div>
+        <img src="https://lh3.googleusercontent.com/d/1BVlwEuhu_FRbFnaCmEl1iPOVFrwpIPRz" alt="Anya Sivana" class="profile-photo">
+      </div>
+      <div class="role-title">– Bride –</div>
+      <div class="couple-fullname">ANYA SIVANA</div>
+      <div class="parent-info">Putri Pertama dari Bapak Budi & Ibu Budi</div>
+      <a href="https://instagram.com/skycovershop" target="_blank" class="ig-btn">
+        <i class="fa-brands fa-instagram"></i> skycovershop
+      </a>
+    </div>
+
+    <!-- Teks Penghubung "D E N G A N" -->
+    <div class="divider-word scroll-animate" style="transition-delay: 0.7s;">
+      D &nbsp; E &nbsp; N &nbsp; G &nbsp; A &nbsp; N
+    </div>
+
+    <!-- Profil Pengantin Kedua (Groom - Julian) -->
+    <div class="profile-section scroll-animate" style="transition-delay: 0.8s;">
+      <div class="photo-container">
+        <div class="circle-frame"></div>
+        <img src="https://lh3.googleusercontent.com/d/1_v1FT9fp7kSlWNi_vGxsnsgKZkzC0OPn" alt="Julian Asher" class="profile-photo">
+      </div>
+      <div class="role-title">– Groom –</div>
+      <div class="couple-fullname">JULIAN ASHER</div>
+      <div class="parent-info">Putra Pertama dari Bapak Budi & Ibu Budi</div>
+      <a href="https://instagram.com/skycovershop" target="_blank" class="ig-btn">
+        <i class="fa-brands fa-instagram"></i> skycovershop
+      </a>
     </div>
 
   </div>
+
 </div>
 
 <!-- Tombol Musik Mengambang di Ujung Bawah Kanan -->
