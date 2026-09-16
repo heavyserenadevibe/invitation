@@ -248,6 +248,15 @@
     filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.2));
   }
 
+  /* Khusus teks tanggal dengan gradasi abu-abu */
+  .gradient-gray-text {
+    background: linear-gradient(270deg, #555555, #888888, #444444, #999999, #555555);
+    background-size: 300% 300%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: gradientFlow 6s ease infinite;
+  }
+
   .wedding-title {
     font-family: 'Outfit', sans-serif;
     font-weight: 300;
@@ -351,11 +360,11 @@
     color: #1a1a1a;
   }
 
-  /* Keyframes Animasi Scroll 1.8 Detik (Muncul & Menghilang Pudar) */
+  /* Keyframes Animasi Scroll 1.9 Detik */
   .scroll-animate {
     opacity: 0;
     transform: translateY(40px);
-    transition: opacity 1.8s cubic-bezier(0.16, 1, 0.3, 1), transform 1.8s cubic-bezier(0.16, 1, 0.3, 1);
+    transition: opacity 1.9s cubic-bezier(0.16, 1, 0.3, 1), transform 1.9s cubic-bezier(0.16, 1, 0.3, 1);
     will-change: opacity, transform;
   }
 
@@ -461,7 +470,7 @@
     -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
     -webkit-mask-composite: xor;
     mask-composite: exclude;
-    transition: transform 1.8s cubic-bezier(0.16, 1, 0.3, 1), opacity 1.8s ease;
+    transition: transform 1.9s cubic-bezier(0.16, 1, 0.3, 1), opacity 1.9s ease;
     transform: rotateY(180deg) scale(0.9);
     opacity: 0;
   }
@@ -471,7 +480,7 @@
     height: 130px;
     border-radius: 50%;
     object-fit: cover;
-    transition: transform 1.8s cubic-bezier(0.16, 1, 0.3, 1), opacity 1.8s ease;
+    transition: transform 1.9s cubic-bezier(0.16, 1, 0.3, 1), opacity 1.9s ease;
     transform: rotateY(-180deg) scale(0.9);
     opacity: 0;
     filter: drop-shadow(0 4px 10px rgba(0,0,0,0.15));
@@ -542,6 +551,187 @@
     color: #666666;
     margin: clamp(40px, 6vh, 60px) 0;
     text-transform: uppercase;
+  }
+
+  /* --- STYLING SECTION TANGGAL & ACARA (Menyatu dalam Background Putih) --- */
+  .event-section-wrapper {
+    width: 100%;
+    max-width: 600px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: clamp(80px, 15vh, 120px) 24px clamp(150px, 25vh, 250px) 24px;
+  }
+
+  /* Ukuran font teks pembuka diatur tepat 9px */
+  .save-date-intro {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-weight: 400;
+    font-style: italic;
+    font-size: 9px;
+    letter-spacing: 2px;
+    color: #4a4a4a;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+  }
+
+  /* Padding di sekitar Save The Date diatur sekitar 40px */
+  .save-date-title {
+    font-family: 'Abril Fatface', serif;
+    font-size: clamp(1rem, 3.2vw, 1.8rem);
+    letter-spacing: 3px;
+    color: #1a1a1a;
+    padding: 40px 0;
+    white-space: nowrap;
+    text-align: center;
+  }
+
+  .countdown-wrapper-inner {
+    display: inline-flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+    gap: clamp(4px, 1.5vw, 10px);
+    margin-bottom: 12px;
+    background: rgba(0, 0, 0, 0.04);
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    padding: clamp(6px, 1vh, 10px) clamp(10px, 2vw, 16px);
+    border-radius: 10px;
+    width: auto;
+  }
+
+  .countdown-box-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 38px;
+    flex-shrink: 0;
+  }
+
+  .countdown-number-inner {
+    font-family: 'Outfit', sans-serif;
+    font-weight: 700;
+    font-size: clamp(0.95rem, 2.2vw, 1.4rem);
+    color: #1a1a1a;
+  }
+
+  .countdown-label-inner {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-weight: 300;
+    font-size: clamp(0.45rem, 0.75vw, 0.58rem);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: #555555;
+    margin-top: 1px;
+  }
+
+  .separator-i-inner {
+    font-family: 'Outfit', sans-serif;
+    font-weight: 700;
+    font-size: clamp(0.9rem, 2vw, 1.3rem);
+    padding: 0 1px;
+    margin-bottom: 35px;
+    color: #333333;
+  }
+
+  .event-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 50px;
+  }
+
+  .event-title {
+    font-family: 'Outfit', sans-serif;
+    font-weight: 400;
+    font-style: italic;
+    font-size: clamp(1.25rem, 3.1vw, 1.75rem);
+    color: #1a1a1a;
+    margin-top: 4px;
+    margin-bottom: 4px;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  /* Ukuran font angka tanggal dinaikkan 15px */
+  .event-date-day {
+    font-family: 'Outfit', sans-serif;
+    font-weight: 700;
+    font-size: calc(clamp(1.25rem, 3.1vw, 1.75rem) + 15px);
+    line-height: 1.1;
+    margin-top: -6px; 
+    margin-bottom: 2px;
+    text-align: center;
+  }
+
+  /* Ukuran font bulan dan tahun kembali seperti semula (tanpa penambahan) */
+  .event-date-month {
+    font-family: 'Outfit', sans-serif;
+    font-weight: 600;
+    font-size: clamp(0.8rem, 2vw, 1.05rem);
+    letter-spacing: 2px;
+    margin-bottom: 8px;
+    text-align: center;
+  }
+
+  .event-details {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-weight: 300;
+    font-size: clamp(0.65rem, 1.1vw, 0.82rem);
+    line-height: 1.5;
+    color: #4a4a4a;
+    margin-bottom: 10px;
+    text-align: center;
+  }
+
+  .action-btn-event {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 16px;
+    border-radius: 50px;
+    background: rgba(0, 0, 0, 0.08);
+    backdrop-filter: blur(5px);
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    color: #1a1a1a;
+    font-size: 0.72rem;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    animation: pulseButtonDark 2.5s infinite;
+  }
+
+  .action-btn-event:hover {
+    background: rgba(0, 0, 0, 0.15);
+    transform: scale(1.05);
+  }
+
+  @keyframes pulseButtonDark {
+    0% { box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.2); }
+    70% { box-shadow: 0 0 0 10px rgba(0, 0, 0, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(0, 0, 0, 0); }
+  }
+
+  .divider-line {
+    width: 40px;
+    height: 1px;
+    background: rgba(0, 0, 0, 0.2);
+    margin: 12px auto;
+  }
+
+  .pop-animate {
+    opacity: 0;
+    transform: scale(0.95) translateY(10px);
+    transition: opacity 1.9s cubic-bezier(0.16, 1, 0.3, 1), transform 1.9s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .pop-animate.active {
+    opacity: 1;
+    transform: scale(1) translateY(0);
   }
 
   /* Floating Music Button di Ujung Bawah Kanan */
@@ -722,7 +912,7 @@
     </div>
   </div>
 
-  <!-- Gabungan Section Quote & Profil dengan Background Putih Opasitas 50% & Full Layar -->
+  <!-- Gabungan Section Quote, Profil, & Tanggal dengan Background Putih Opasitas 50% & Full Layar -->
   <div class="combined-content-section">
     
     <!-- Quotes di Bagian Atas Container -->
@@ -779,6 +969,81 @@
       <a href="https://instagram.com/skycovershop" target="_blank" class="ig-btn">
         <i class="fa-brands fa-instagram"></i> skycovershop
       </a>
+    </div>
+
+    <!-- SECTION TANGGAL & ACARA (Menyatu dalam Background Putih) -->
+    <div class="event-section-wrapper">
+      
+      <!-- Kata Pembuka Bahasa Inggris ukuran 9px -->
+      <div class="save-date-intro scroll-animate" style="transition-delay: 0.9s;">
+        The Journey of Our Forever
+      </div>
+
+      <!-- Judul Save The Date dengan padding sekitar 40px -->
+      <div class="save-date-title scroll-animate" style="transition-delay: 1.0s;">S A V E &nbsp; T H E &nbsp; D A T E</div>
+
+      <!-- Countdown Timer -->
+      <div class="countdown-wrapper-inner pop-animate" style="transition-delay: 1.1s;">
+        <div class="countdown-box-inner">
+          <div id="days-inner" class="countdown-number-inner">00</div>
+          <div class="countdown-label-inner">Days</div>
+        </div>
+        <div class="separator-i-inner">I</div>
+        <div class="countdown-box-inner">
+          <div id="hours-inner" class="countdown-number-inner">00</div>
+          <div class="countdown-label-inner">Hours</div>
+        </div>
+        <div class="separator-i-inner">I</div>
+        <div class="countdown-box-inner">
+          <div id="minutes-inner" class="countdown-number-inner">00</div>
+          <div class="countdown-label-inner">Minutes</div>
+        </div>
+        <div class="separator-i-inner">I</div>
+        <div class="countdown-box-inner">
+          <div id="seconds-inner" class="countdown-number-inner">00</div>
+          <div class="countdown-label-inner">Seconds</div>
+        </div>
+      </div>
+
+      <!-- Tombol Kalender -->
+      <div class="scroll-animate" style="transition-delay: 1.2s; margin-bottom: 30px;">
+        <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=The+Wedding+of+Anya+%26+Julian&dates=20301212T010000Z/20301212T100000Z&details=Acara+Pernikahan+Anya+%26+Julian&location=Jl.+Merdeka+Raya+No.+10+Kota+Raya" target="_blank" class="action-btn-event">
+          <i class="fa-regular fa-calendar-days"></i> Tambahkan ke Kalender
+        </a>
+      </div>
+
+      <div class="divider-line scroll-animate" style="transition-delay: 1.3s;"></div>
+
+      <!-- Sesi Akad -->
+      <div class="event-section scroll-animate" style="transition-delay: 1.4s; margin-top: 100px;">
+        <div class="event-title">Akad</div>
+        <div class="event-date-day gradient-gray-text">12</div>
+        <div class="event-date-month gradient-gray-text">DECEMBER 2030</div>
+        <div class="event-details">
+          Pukul : 08.00 WIB s/d Selesai.<br>
+          Alamat : Jl. Merdeka Raya No. 10 Kota Raya
+        </div>
+        <a href="https://maps.google.com" target="_blank" class="action-btn-event">
+          <i class="fa-solid fa-map-location-dot"></i> Buka Gmaps
+        </a>
+      </div>
+
+      <div class="divider-line scroll-animate" style="transition-delay: 1.5s;"></div>
+
+      <!-- Sesi Resepsi -->
+      <div class="event-section scroll-animate" style="transition-delay: 1.6s;">
+        <div class="event-title">Resepsi</div>
+        <div class="event-date-day gradient-gray-text">12</div>
+        <div class="event-date-month gradient-gray-text">DECEMBER 2030</div>
+        <div class="event-details">
+          Pukul : 08.00 WIB s/d Selesai.<br>
+          Alamat : Jl. Merdeka Raya No. 10 Kota Raya
+        </div>
+        <a href="https://maps.google.com" target="_blank" class="action-btn-event">
+          <i class="fa-solid fa-map-location-dot"></i> Buka Gmaps
+        </a>
+      </div>
+
     </div>
 
   </div>
@@ -839,10 +1104,19 @@
     const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
     const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
+    // Hero Countdown
     document.getElementById("days").innerText = String(days).padStart(2, '0');
     document.getElementById("hours").innerText = String(hours).padStart(2, '0');
     document.getElementById("minutes").innerText = String(minutes).padStart(2, '0');
     document.getElementById("seconds").innerText = String(seconds).padStart(2, '0');
+
+    // Inner Section Countdown
+    if(document.getElementById("days-inner")) {
+      document.getElementById("days-inner").innerText = String(days).padStart(2, '0');
+      document.getElementById("hours-inner").innerText = String(hours).padStart(2, '0');
+      document.getElementById("minutes-inner").innerText = String(minutes).padStart(2, '0');
+      document.getElementById("seconds-inner").innerText = String(seconds).padStart(2, '0');
+    }
   }
 
   setInterval(updateCountdown, 1000);
@@ -875,7 +1149,7 @@
     }
   });
 
-  // Script untuk Animasi Scroll Dua Arah (1.8 Detik & Muncul di Tengah Layar)
+  // Script untuk Animasi Scroll Dua Arah (1.9 Detik & Muncul di Tengah Layar)
   document.addEventListener("DOMContentLoaded", function () {
     const observerOptions = {
       root: null,
@@ -893,7 +1167,7 @@
       });
     }, observerOptions);
 
-    const animatedElements = document.querySelectorAll('.scroll-animate, .profile-section');
+    const animatedElements = document.querySelectorAll('.scroll-animate, .profile-section, .pop-animate');
     animatedElements.forEach(el => observer.observe(el));
   });
 </script>
