@@ -1450,65 +1450,6 @@
     font-style: normal;
   }
 
-  /* --- SECTION PENUTUP AKHIR (HERO SECTION STYLE) --- */
-  .final-closing-section {
-    width: 100vw;
-    min-height: 100vh;
-    padding: clamp(60px, 12vh, 100px) 24px clamp(50px, 8vh, 80px) 24px;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    align-items: center;
-    text-align: center;
-    background: linear-gradient(180deg, transparent 0%, rgba(20, 20, 20, 0.6) 40%, rgba(30, 30, 30, 0.95) 100%);
-    backdrop-filter: blur(3px);
-    -webkit-backdrop-filter: blur(3px);
-    z-index: 12;
-    position: relative;
-    margin-top: 100px;
-  }
-
-  .thank-you-title {
-    font-family: 'Yeseva One', cursive, serif;
-    font-size: 19px;
-    font-weight: normal;
-    letter-spacing: 2px;
-    margin-bottom: 12px;
-    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.95);
-  }
-
-  .closing-eng-text {
-    font-family: 'Plus Jakarta Sans', sans-serif;
-    font-weight: 300;
-    font-size: 8px;
-    line-height: 1.6;
-    max-width: 450px;
-    margin-bottom: 12px;
-    color: rgba(255, 255, 255, 0.9);
-    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.95);
-  }
-
-  .warm-regards-text {
-    font-family: 'Plus Jakarta Sans', sans-serif;
-    font-weight: 400;
-    font-size: 8px;
-    letter-spacing: 1.5px;
-    text-transform: uppercase;
-    margin-bottom: 10px;
-    color: rgba(255, 255, 255, 0.8);
-    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.95);
-  }
-
-  .closing-names {
-    font-family: 'Yeseva One', cursive, serif;
-    font-size: 25px;
-    font-weight: normal;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    color: #ffffff;
-    text-shadow: 0 2px 12px rgba(0, 0, 0, 0.95);
-  }
-
   .toast {
     position: fixed;
     bottom: 20px;
@@ -1853,7 +1794,7 @@
   <div class="bottom-combined-section scroll-animate">
     <div class="bottom-combined-inner">
       
-      <!-- Modul Our Story -->
+      <!-- Modul Our Story (Diubah dari Our Moment menjadi Our Story) -->
       <section class="lovestory-section">
         <h2 class="lovestory-title">Our Story</h2>
 
@@ -2107,14 +2048,15 @@
     </div>
   </div>
 
-  <!-- SECTION PENUTUP AKHIR (HERO SECTION STYLE, DI LUAR BACKGROUND PUTIH, FULL LAYAR) -->
-  <div class="final-closing-section">
-    <div class="thank-you-title">THANK YOU</div>
-    <div class="closing-eng-text">
-      Thank you for being an unforgettable part of our special day and sharing your heartfelt wishes with us.
+  <!-- SECTION PENUTUP BARU (FULL LAYAR MOBILE VIEW, DI LUAR BACKGROUND PUTIH BLUR, GRADASI GREY PENUH DARI BAWAH KE ATAS) -->
+  <div style="width: 100vw; height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 24px; background: linear-gradient(to top, rgba(80, 80, 80, 0.95) 0%, rgba(50, 50, 50, 0.8) 50%, rgba(30, 30, 30, 0.6) 100%); z-index: 12; position: relative; scroll-snap-align: start;">
+    <div style="font-family: 'Plus Jakarta Sans', sans-serif; font-size: 1rem; font-weight: 400; color: #e0e0e0; line-height: 1.6; max-width: 500px; text-shadow: 0 2px 8px rgba(0,0,0,0.8);">
+      Thank you for being part of our special day and for all the wonderful blessings you shared with us.
+      <div style="height: 25px;"></div>
+      Warm Regards,
+      <div style="height: 15px;"></div>
+      <span style="font-family: 'Yeseva One', cursive, serif; font-size: 30px; font-weight: normal; color: #ffffff; text-shadow: 0 2px 10px rgba(0,0,0,0.9);">ANYA & JULIAN</span>
     </div>
-    <div class="warm-regards-text">warm regards,</div>
-    <div class="closing-names">ANYA & JULIAN</div>
   </div>
 
 </div>
@@ -2440,7 +2382,7 @@
   const total = items.length;
 
   items.forEach((_, index) => {
-    const dot = document.div();
+    const dot = document.createElement('div');
     dot.classList.add('dot');
     if (index === 0) dot.classList.add('active');
     dot.addEventListener('click', () => updateCarousel(index));
