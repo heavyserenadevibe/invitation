@@ -99,7 +99,8 @@
     justify-content: center;
     text-align: center;
     padding: 20px;
-    transition: opacity 1.5s cubic-bezier(0.16, 1, 0.3, 1), visibility 1.5s ease;
+    background: #000000; /* Memastikan tidak ada background putih di bawahnya */
+    transition: opacity 1.7s cubic-bezier(0.16, 1, 0.3, 1), visibility 1.7s ease;
   }
 
   #coverSection.fade-out {
@@ -186,7 +187,7 @@
     z-index: 5;
     opacity: 0;
     visibility: hidden;
-    transition: opacity 1.5s cubic-bezier(0.16, 1, 0.3, 1), visibility 1.5s ease;
+    transition: opacity 1.7s cubic-bezier(0.16, 1, 0.3, 1), visibility 1.7s ease;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -220,9 +221,7 @@
 
   .hero-section {
     width: 100vw;
-    min-height: 100vh;
-    height: 100vh;
-    padding: clamp(60px, 10vh, 100px) 24px;
+    padding: clamp(80px, 15vh, 120px) 24px clamp(150px, 25vh, 150px) 24px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -342,7 +341,6 @@
     margin-top: 6px;
   }
 
-  /* Section Gabungan Utama (White Blurry) */
   .combined-content-section {
     width: 100vw;
     display: flex;
@@ -728,7 +726,6 @@
     transform: scale(1) translateY(0);
   }
 
-  /* --- SECTION PEMISAH: AR-RUM 21 (Tanpa Background, Teks Shadow) --- */
   .verse-section-outside {
     width: 100vw;
     display: flex;
@@ -766,7 +763,6 @@
     text-shadow: 0 2px 10px rgba(0, 0, 0, 0.95);
   }
 
-  /* --- SECTION TERAKHIR: OUR STORY, GIFT & RSVP (Background White Blurry Baru) --- */
   .bottom-combined-section {
     width: 100vw;
     display: flex;
@@ -792,7 +788,6 @@
     align-items: center;
   }
 
-  /* --- STYLE MODUL OUR STORY --- */
   .lovestory-section {
     width: 100%;
     margin-top: 180px;
@@ -939,7 +934,6 @@
     text-align: justify;
   }
 
-  /* Modul Gift */
   .gift-section-container {
     width: 100%;
     margin-bottom: 40px;
@@ -1185,7 +1179,6 @@
     transform: translateY(-2px);
   }
 
-  /* --- STYLE MODUL RSVP BARU --- */
   .rsvp-container-module {
     width: 100%;
     margin-top: 20px;
@@ -1411,7 +1404,6 @@
     color: #1a1a1a;
   }
 
-  /* --- STYLE SECTION QUOTES LUAR (DI LUAR BACKGROUND) --- */
   .outside-quote-section {
     width: 100vw;
     display: flex;
@@ -1425,13 +1417,16 @@
     margin-top: 180px;
   }
 
+  /* Diubah agar quotes section terakhir dibuat rata tengah secara mutlak */
   .outside-quote-text {
     font-family: 'Plus Jakarta Sans', sans-serif;
     font-weight: 300;
     font-size: clamp(0.75rem, 1.5vw, 1.05rem);
     line-height: 1.8;
     color: #ffffff;
-    text-align: center;
+    text-align: center !important;
+    margin-left: auto;
+    margin-right: auto;
     max-width: 550px;
     padding: 0 15px;
     font-style: italic;
@@ -1444,51 +1439,9 @@
     font-size: clamp(0.7rem, 1.2vw, 0.9rem);
     color: rgba(255, 255, 255, 0.95);
     margin-top: 14px;
-    text-align: center;
-    letter-spacing: 1.5px;
-    text-transform: uppercase;
-    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.95);
-    font-style: normal;
-  }
-
-  /* --- STYLE SECTION QUOTES TERAKHIR SEBELUM PENUTUP (RATA TENGAH) --- */
-  .last-quote-section {
-    width: 100vw;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    padding: clamp(60px, 10vh, 100px) 24px;
-    background: transparent;
-    z-index: 12;
-    position: relative;
-  }
-
-  .last-quote-content {
-    width: 100%;
-    max-width: 550px;
-    text-align: center;
-    padding: 0 15px;
-  }
-
-  .last-quote-text {
-    font-family: 'Plus Jakarta Sans', sans-serif;
-    font-weight: 300;
-    font-size: clamp(0.75rem, 1.5vw, 1.05rem);
-    line-height: 1.8;
-    color: #ffffff;
-    text-align: center;
-    font-style: italic;
-    text-shadow: 0 2px 12px rgba(0, 0, 0, 0.95), 0 0 25px rgba(0, 0, 0, 0.8);
-  }
-
-  .last-quote-source {
-    font-family: 'Outfit', sans-serif;
-    font-weight: 600;
-    font-size: clamp(0.7rem, 1.2vw, 0.9rem);
-    color: rgba(255, 255, 255, 0.95);
-    margin-top: 14px;
-    text-align: center;
+    text-align: center !important;
+    margin-left: auto;
+    margin-right: auto;
     letter-spacing: 1.5px;
     text-transform: uppercase;
     text-shadow: 0 2px 10px rgba(0, 0, 0, 0.95);
@@ -1519,7 +1472,6 @@
     transform: translateX(-50%) translateY(0);
   }
 
-  /* Tombol Musik Mengambang */
   .floating-music-container {
     position: fixed;
     bottom: 24px;
@@ -1601,10 +1553,8 @@
 </head>
 <body>
 
-<!-- Audio Latar Belakang -->
 <audio id="bgMusic" src="https://files.catbox.moe/wv1h4d.mpeg" loop preload="auto"></audio>
 
-<!-- Background Slider Berjalan Full Layar (Menetap) -->
 <div class="slider-container">
   <div class="slider-track">
     <div class="photo-card"><img src="https://lh3.googleusercontent.com/d/1Cv7gnXx68XskZjpbQHXTVU9NHQOzbSm0=s800" alt="Moment 1"></div>
@@ -1652,7 +1602,6 @@
     <div class="border-frame"></div>
   </div>
 
-  <!-- Hero Section (Full Layar 100vh agar tidak ada putih di bawah) -->
   <div class="hero-section">
     <div class="wedding-title">The Wedding Of</div>
     
@@ -1693,10 +1642,8 @@
     </div>
   </div>
 
-  <!-- SECTION UTAMA (WHITE BLURRY): Quotes Pertama, Profil, & Penanggalan/Acara Tergabung Sempurna -->
   <div class="combined-content-section">
     
-    <!-- Quotes Pertama -->
     <div class="quote-box-inside scroll-animate">
       <div class="quote-text">
         "True love stories never have endings. It’s about finding that one person whose soul recognizes yours, creating a sanctuary of warmth, comfort, and infinite devotion through every season of life."
@@ -1706,21 +1653,19 @@
       </div>
     </div>
 
-    <!-- Judul & Profil Pengantin -->
-    <div class="wedding-title-main scroll-animate">The Wedding</div>
-    <div class="wedding-names-sub scroll-animate">Anya and Julian</div>
+    <div class="wedding-title-main scroll-animate" style="transition-delay: 0.3s;">The Wedding</div>
+    <div class="wedding-names-sub scroll-animate" style="transition-delay: 0.4s;">Anya and Julian</div>
 
-    <div class="invitation-text-profile salam-text scroll-animate">
+    <div class="invitation-text-profile salam-text scroll-animate" style="transition-delay: 0.5s;">
       Assalamu'alaikum Warahmatullahi Wabarakatuh.<br>
       Puji dan syukur kita ucapkan atas berkat dan rahmat-Nya. Semoga kita semua diberi kesehatan dan kemudahan dalam setiap urusan.
     </div>
 
-    <div class="invitation-text-profile scroll-animate">
+    <div class="invitation-text-profile scroll-animate" style="transition-delay: 0.6s;">
       Dengan memohon rahmat dan rida Allah SWT, kami bermaksud mengundang Bapak/Ibu/Saudara/i untuk menghadiri acara pernikahan putra-putri kami.
     </div>
 
-    <!-- Profil Pengantin Pertama (Bride - Anya) -->
-    <div class="profile-section scroll-animate">
+    <div class="profile-section scroll-animate" style="transition-delay: 0.7s;">
       <div class="photo-container">
         <div class="circle-frame"></div>
         <img src="https://lh3.googleusercontent.com/d/1BVlwEuhu_FRbFnaCmEl1iPOVFrwpIPRz" alt="Anya Sivana" class="profile-photo">
@@ -1733,13 +1678,11 @@
       </a>
     </div>
 
-    <!-- Teks Penghubung "D E N G A N" -->
-    <div class="divider-word scroll-animate">
+    <div class="divider-word scroll-animate" style="transition-delay: 0.8s;">
       D &nbsp; E &nbsp; N &nbsp; G &nbsp; A &nbsp; N
     </div>
 
-    <!-- Profil Pengantin Kedua (Groom - Julian) -->
-    <div class="profile-section scroll-animate">
+    <div class="profile-section scroll-animate" style="transition-delay: 0.9s;">
       <div class="photo-container">
         <div class="circle-frame"></div>
         <img src="https://lh3.googleusercontent.com/d/1_v1FT9fp7kSlWNi_vGxsnsgKZkzC0OPn" alt="Julian Asher" class="profile-photo">
@@ -1752,16 +1695,15 @@
       </a>
     </div>
 
-    <!-- SECTION TANGGAL & ACARA -->
     <div class="event-section-wrapper">
       
-      <div class="save-date-intro scroll-animate">
+      <div class="save-date-intro scroll-animate" style="transition-delay: 1.0s;">
         The Journey of Our Forever
       </div>
 
-      <div class="save-date-title scroll-animate">S A V E &nbsp; T H E &nbsp; D A T E</div>
+      <div class="save-date-title scroll-animate" style="transition-delay: 1.1s;">S A V E &nbsp; T H E &nbsp; D A T E</div>
 
-      <div class="countdown-wrapper-inner pop-animate">
+      <div class="countdown-wrapper-inner pop-animate" style="transition-delay: 1.2s;">
         <div class="countdown-box-inner">
           <div id="days-inner" class="countdown-number-inner">00</div>
           <div class="countdown-label-inner">Days</div>
@@ -1783,16 +1725,15 @@
         </div>
       </div>
 
-      <div class="scroll-animate" style="margin-bottom: 30px;">
+      <div class="scroll-animate" style="transition-delay: 1.3s; margin-bottom: 30px;">
         <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=The+Wedding+of+Anya+%26+Julian&dates=20301212T010000Z/20301212T100000Z&details=Acara+Pernikahan+Anya+%26+Julian&location=Jl.+Merdeka+Raya+No.+10+Kota+Raya" target="_blank" class="action-btn-event">
           <i class="fa-regular fa-calendar-days"></i> Tambahkan ke Kalender
         </a>
       </div>
 
-      <div class="divider-line scroll-animate"></div>
+      <div class="divider-line scroll-animate" style="transition-delay: 1.4s;"></div>
 
-      <!-- Sesi Akad -->
-      <div class="event-section scroll-animate" style="margin-top: 50px;">
+      <div class="event-section scroll-animate" style="transition-delay: 1.5s; margin-top: 50px;">
         <div class="event-title">Akad</div>
         <div class="event-date-day gradient-gray-text">12</div>
         <div class="event-date-month">DECEMBER 2030</div>
@@ -1805,10 +1746,9 @@
         </a>
       </div>
 
-      <div class="divider-line scroll-animate"></div>
+      <div class="divider-line scroll-animate" style="transition-delay: 1.6s;"></div>
 
-      <!-- Sesi Resepsi -->
-      <div class="event-section scroll-animate">
+      <div class="event-section scroll-animate" style="transition-delay: 1.7s;">
         <div class="event-title">Resepsi</div>
         <div class="event-date-day gradient-gray-text">12</div>
         <div class="event-date-month">DECEMBER 2030</div>
@@ -1825,7 +1765,6 @@
 
   </div>
 
-  <!-- SECTION PEMISAH: QS. Ar-Rum: 21 (Tanpa Background / Transparan) -->
   <div class="verse-section-outside scroll-animate">
     <div class="verse-text-shadow">
       Di antara tanda-tanda (kebesaran)-Nya ialah bahwa Dia menciptakan pasangan-pasangan untukmu dari (jenis) dirimu sendiri agar kamu merasa tenteram kepadanya. Dia menjadikan di antaramu rasa cinta dan kasih sayang. Sesungguhnya pada yang demikian itu benar-benar terdapat tanda-tanda (kebesaran Allah) bagi kaum yang berpikir.
@@ -1835,11 +1774,9 @@
     </div>
   </div>
 
-  <!-- SECTION TERAKHIR: OUR STORY, GIFT & RSVP -->
   <div class="bottom-combined-section scroll-animate">
     <div class="bottom-combined-inner">
       
-      <!-- Modul Our Story -->
       <section class="lovestory-section">
         <h2 class="lovestory-title">Our Story</h2>
 
@@ -1906,7 +1843,6 @@
         </div>
       </section>
 
-      <!-- Modul Wedding Gift -->
       <div class="gift-section-container">
         <div class="gift-header" id="giftHeader">
           <div class="header-wrapper">
@@ -1986,7 +1922,6 @@
         </div>
       </div>
 
-      <!-- Modul RSVP & Wishes Terintegrasi -->
       <div class="rsvp-container-module">
         <div class="section-header-rsvp">
           <h3 class="title-heading-rsvp">Wedding Wish & RSVP</h3>
@@ -2042,20 +1977,17 @@
     </div>
   </div>
 
-  <!-- SECTION QUOTES TERAKHIR SEBELUM PENUTUP (RATA TENGAH & ANIMASI 1.7s) -->
-  <div class="last-quote-section scroll-animate">
-    <div class="last-quote-content">
-      <div class="last-quote-text">
-        "A successful marriage requires falling in love many times, always with the same person. Walk with me hand in hand, through every tomorrow, forever and always."
-      </div>
-      <div class="last-quote-source">
-        — Mignon McLaughlin
-      </div>
+  <!-- SECTION QUOTES TERAKHIR (Diratakan Tengah) -->
+  <div class="outside-quote-section scroll-animate">
+    <div class="outside-quote-text">
+      "A successful marriage requires falling in love many times, always with the same person. Walk with me hand in hand, through every tomorrow, forever and always."
+    </div>
+    <div class="outside-quote-source">
+      — Mignon McLaughlin
     </div>
   </div>
 
-  <!-- SECTION CAROUSEL AESTHETIC -->
-  <div style="width: 100vw; display: flex; justify-content: center; align-items: center; padding: 60px 0; background: rgba(255, 255, 255, 0.5); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border-top: 1px solid rgba(255, 255, 255, 0.8); border-bottom: 1px solid rgba(255, 255, 255, 0.8); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1); z-index: 12; position: relative;" class="scroll-animate">
+  <div style="width: 100vw; display: flex; justify-content: center; align-items: center; padding: 60px 0; background: rgba(255, 255, 255, 0.5); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border-top: 1px solid rgba(255, 255, 255, 0.8); border-bottom: 1px solid rgba(255, 255, 255, 0.8); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1); z-index: 12; position: relative;">
     <div style="width: 100%; max-width: 600px; display: flex; flex-direction: column; align-items: center; text-align: center;">
       <div style="margin-bottom: 30px;">
         <h2 style="font-family: 'Yeseva One', cursive, serif; font-size: clamp(1.5rem, 5vw, 2.4rem); color: #1a1a1a; font-weight: normal; margin-bottom: 4px; text-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);">Our Moment</h2>
@@ -2081,8 +2013,7 @@
     </div>
   </div>
 
-  <!-- SECTION PENUTUP BARU (FULL LAYAR) -->
-  <div style="width: 100vw; height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 24px; background: linear-gradient(to top, rgba(80, 80, 80, 0.95) 0%, rgba(50, 50, 50, 0.8) 50%, rgba(30, 30, 30, 0.6) 100%); z-index: 12; position: relative; scroll-snap-align: start;" class="scroll-animate">
+  <div style="width: 100vw; height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 24px; background: linear-gradient(to top, rgba(80, 80, 80, 0.95) 0%, rgba(50, 50, 50, 0.8) 50%, rgba(30, 30, 30, 0.6) 100%); z-index: 12; position: relative; scroll-snap-align: start;">
     <div style="font-family: 'Plus Jakarta Sans', sans-serif; font-size: 1rem; font-weight: 400; color: #e0e0e0; line-height: 1.6; max-width: 500px; text-shadow: 0 2px 8px rgba(0,0,0,0.8);">
       Thank you for being part of our special day and for all the wonderful blessings you shared with us.
       <div style="height: 25px;"></div>
@@ -2094,14 +2025,12 @@
 
 </div>
 
-<!-- Tombol Musik Mengambang di Ujung Bawah Kanan -->
 <div class="floating-music-container" id="musicContainer">
   <button id="musicBtn" onclick="toggleMusic()" class="pastel-btn playing" aria-label="Toggle Musik">
     <i id="musicIcon" class="fa-solid fa-compact-disc"></i>
   </button>
 </div>
 
-<!-- Elemen Toast Pemberitahuan -->
 <div id="toast" class="toast">
   <i class="fa-solid fa-circle-check"></i> <span>Nomor rekening berhasil disalin!</span>
 </div>
@@ -2459,52 +2388,26 @@
     });
   }
 
-  updateCarousel(0);
-
-  document.addEventListener("DOMContentLoaded", function () {
-    const toggleWrapperStory = document.getElementById("toggleStoryBtnWrapper");
-    setTimeout(() => {
-      if(toggleWrapperStory) toggleWrapperStory.classList.add("visible");
-    }, 100);
-
-    const cards = document.querySelectorAll(".momen-card");
-    const observerOptions = {
-      root: null,
-      rootMargin: "0px",
-      threshold: 0.15
-    };
-
-    const observerCards = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("visible");
-        } else {
-          entry.target.classList.remove("visible");
-        }
-      });
-    }, observerOptions);
-
-    cards.forEach((card) => {
-      observerCards.observe(card);
-    });
-  });
-
+  // Intersection Observer untuk animasi scroll naik/turun berdurasi 1.7s
   const observerOptions = {
-    threshold: 0.15,
-    rootMargin: "0px 0px -50px 0px"
+    root: null,
+    rootMargin: '0px',
+    threshold: 0.15
   };
 
   const observer = new IntersectionObserver((entries, observer) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
-        entry.target.classList.add("active");
+        entry.target.classList.add('active');
+        entry.target.classList.add('visible');
       } else {
-        entry.target.classList.remove("active");
+        entry.target.classList.remove('active');
+        entry.target.classList.remove('visible');
       }
     });
   }, observerOptions);
 
-  document.querySelectorAll(".scroll-animate").forEach(el => {
+  document.querySelectorAll('.scroll-animate, .pop-animate, .toggle-btn-wrapper-story, .momen-card, .gift-header, .toggle-btn-wrapper, .wa-btn-wrapper').forEach(el => {
     observer.observe(el);
   });
 </script>
