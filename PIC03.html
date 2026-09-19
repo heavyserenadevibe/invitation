@@ -99,7 +99,7 @@
     justify-content: center;
     text-align: center;
     padding: 20px;
-    background: #000000; /* Memastikan tidak ada background putih di bawahnya */
+    background: transparent; /* Diubah agar background berjalan terlihat penuh di cover */
     transition: opacity 1.7s cubic-bezier(0.16, 1, 0.3, 1), visibility 1.7s ease;
   }
 
@@ -221,16 +221,19 @@
 
   .hero-section {
     width: 100vw;
-    padding: clamp(80px, 15vh, 120px) 24px clamp(150px, 25vh, 150px) 24px;
+    min-height: 100vh;
+    height: 100vh;
+    padding: clamp(40px, 8vh, 80px) 24px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     text-align: center;
-    background: linear-gradient(180deg, rgba(30, 30, 30, 0.9) 0%, rgba(20, 20, 20, 0.6) 60%, transparent 100%);
+    background: linear-gradient(180deg, rgba(20, 20, 20, 0.85) 0%, rgba(15, 15, 15, 0.95) 70%, rgba(0, 0, 0, 1) 100%);
     backdrop-filter: blur(3px);
     -webkit-backdrop-filter: blur(3px);
     z-index: 6;
+    box-sizing: border-box;
   }
 
   @keyframes gradientFlow {
@@ -1417,7 +1420,6 @@
     margin-top: 180px;
   }
 
-  /* Diubah agar quotes section terakhir dibuat rata tengah secara mutlak */
   .outside-quote-text {
     font-family: 'Plus Jakarta Sans', sans-serif;
     font-weight: 300;
@@ -2183,115 +2185,106 @@
 
   function showToast(message) {
     const toast = document.getElementById('toast');
-    toast.innerHTML = `<i class="fa-solid fa-circle-check"></i> <span>${message}</span>`;
+    toast.querySelector('span').innerText = message;
     toast.classList.add('show');
     setTimeout(() => {
       toast.classList.remove('show');
     }, 3000);
   }
 
-  const bgMusic = document.getElementById("bgMusic");
-  const musicContainer = document.getElementById("musicContainer");
-  const musicBtn = document.getElementById("musicBtn");
-  const musicIcon = document.getElementById("musicIcon");
-  let isPlaying = false;
-
-  function toggleMusic() {
-    if (isPlaying) {
-      bgMusic.pause();
-      musicBtn.classList.remove("playing");
-      musicIcon.className = "fa-solid fa-play";
-      isPlaying = false;
-    } else {
-      bgMusic.play().then(() => {
-        musicBtn.classList.add("playing");
-        musicIcon.className = "fa-solid fa-compact-disc";
-        isPlaying = true;
-      }).catch(e => console.log("Audio play error:", e));
-    }
-  }
-
-  function getQueryParam(param) {
-    const urlParams = new URLSearchParams(window.location.search);
-    return urlParams.get(param);
-  }
-
-  window.addEventListener("DOMContentLoaded", () => {
-    const guestName = getQueryParam("to");
-    if (guestName) {
-      document.getElementById("guestNameContainer").innerText = decodeURIComponent(guestName);
-    }
-    loadWishes();
-  });
-
-  function openInvitation() {
-    const coverSection = document.getElementById("coverSection");
-    const mainContent = document.getElementById("mainContent");
-
-    coverSection.classList.add("fade-out");
-    mainContent.classList.add("fade-in");
-    musicContainer.classList.remove("hidden");
-
-    bgMusic.play().then(() => {
-      isPlaying = true;
-      musicBtn.classList.add("playing");
-      musicIcon.className = "fa-solid fa-compact-disc";
-    }).catch(e => {
-      console.log("Autoplay blocked:", e);
-      isPlaying = false;
-      musicBtn.classList.remove("playing");
-      musicIcon.className = "fa-solid fa-play";
-    });
-
-    window.scrollTo(0, 0);
-  }
-
-  function salinNorek(text, btnElement) {
-    navigator.clipboard.writeText(text).then(() => {
-      const span = btnElement.querySelector("span");
-      const originalText = span.innerText;
-      btnElement.classList.add("copied");
-      span.innerText = "Berhasil Disalin!";
+  function salinNorek(teks, btn) {
+    navigator.clipboard.writeText(teks).then(() => {
+      const originalHTML = btn.innerHTML;
+      btn.innerHTML = '<i class="fa-solid fa-check"></i> <span>Berhasil Disalin!</span>';
+      btn.classList.add('copied');
       showToast("Nomor rekening berhasil disalin!");
       setTimeout(() => {
-        btnElement.classList.remove("copied");
-        span.innerText = originalText;
+        btn.innerHTML = originalHTML;
+        btn.classList.remove('copied');
       }, 2000);
+    }).catch(err => {
+      console.error('Gagal menyalin: ', err);
     });
   }
 
   function toggleRekening() {
-    const wrapper = document.getElementById("rekeningContainerWrapper");
-    const toggleText = document.getElementById("toggleRekText");
-    const toggleIcon = document.getElementById("toggleRekIcon");
-    
-    wrapper.classList.toggle("show");
-    if (wrapper.classList.contains("show")) {
-      toggleText.innerText = "Sembunyikan Rekening";
-      toggleIcon.className = "fa-solid fa-gift";
+    const wrapper = document.getElementById('rekeningContainerWrapper');
+    const btnText = document.getElementById('toggleRekText');
+    const btnIcon = document.getElementById('toggleRekIcon');
+    const giftHeader = document.getElementById('giftHeader');
+    const toggleBtnWrapper = document.getElementById('toggleBtnWrapper');
+    const waBtnWrapper = document.getElementById('waBtnWrapper');
+
+    wrapper.classList.toggle('show');
+
+    if (wrapper.classList.contains('show')) {
+      btnText.innerText = "Sembunyikan Rekening";
+      btnIcon.className = "fa-solid fa-gift";
+      if(waBtnWrapper) waBtnWrapper.style.marginTop = "20px";
     } else {
-      toggleText.innerText = "Tampilkan Rekening";
-      toggleIcon.className = "fa-solid fa-gift";
+      btnText.innerText = "Tampilkan Rekening";
+      btnIcon.className = "fa-solid fa-gift";
+      if(waBtnWrapper) waBtnWrapper.style.marginTop = "10px";
     }
   }
 
   function toggleStory() {
     const wrapper = document.getElementById('timelineWrapper');
-    const toggleText = document.getElementById('toggleStoryText');
-    const toggleIcon = document.getElementById('toggleStoryIcon');
+    const btnText = document.getElementById('toggleStoryText');
+    const btnIcon = document.getElementById('toggleStoryIcon');
 
     wrapper.classList.toggle('show');
 
     if (wrapper.classList.contains('show')) {
-      toggleText.innerText = "Sembunyikan Kisah";
-      toggleIcon.className = "fa-solid fa-book";
+      btnText.innerText = "Sembunyikan Kisah Kami";
+      btnIcon.className = "fa-solid fa-book-open";
     } else {
-      toggleText.innerText = "Lihat Kisah Kami";
-      toggleIcon.className = "fa-solid fa-book-open";
+      btnText.innerText = "Lihat Kisah Kami";
+      btnIcon.className = "fa-solid fa-book-open";
     }
   }
 
-  const weddingDate = new Date("December 12, 2030 00:00:00").getTime();
+  // Ambil parameter URL (Nama Tamu)
+  window.addEventListener('DOMContentLoaded', () => {
+    const urlParams = new URLSearchParams(window.location.search);
+    const toParam = urlParams.get('to');
+    if (toParam) {
+      document.getElementById('guestNameContainer').innerText = decodeURIComponent(toParam);
+    }
+    loadWishes();
+  });
+
+  function openInvitation() {
+    const cover = document.getElementById('coverSection');
+    const mainContent = document.getElementById('mainContent');
+    const music = document.getElementById('bgMusic');
+
+    cover.classList.add('fade-out');
+    mainContent.classList.add('fade-in');
+
+    if (music) {
+      music.play().catch(e => console.log("Audio autoplay diproteksi browser:", e));
+    }
+  }
+
+  function toggleMusic() {
+    const music = document.getElementById('bgMusic');
+    const btn = document.getElementById('musicBtn');
+    const icon = document.getElementById('musicIcon');
+
+    if (music.paused) {
+      music.play();
+      btn.classList.add('playing');
+      icon.className = "fa-solid fa-compact-disc";
+    } else {
+      music.pause();
+      btn.classList.remove('playing');
+      icon.className = "fa-solid fa-play";
+    }
+  }
+
+  // CountDown Timer
+  const weddingDate = new Date("December 12, 2030 08:00:00").getTime();
 
   function updateCountdown() {
     const now = new Date().getTime();
@@ -2304,95 +2297,30 @@
     const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
     const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-    const formatDays = String(days).padStart(2, '0');
-    const formatHours = String(hours).padStart(2, '0');
-    const formatMinutes = String(minutes).padStart(2, '0');
-    const formatSeconds = String(seconds).padStart(2, '0');
+    const formatNum = (num) => String(num).padStart(2, '0');
 
-    if (document.getElementById("days")) {
-      document.getElementById("days").innerText = formatDays;
-      document.getElementById("hours").innerText = formatHours;
-      document.getElementById("minutes").innerText = formatMinutes;
-      document.getElementById("seconds").innerText = formatSeconds;
+    if(document.getElementById("days")) {
+      document.getElementById("days").innerText = formatNum(days);
+      document.getElementById("hours").innerText = formatNum(hours);
+      document.getElementById("minutes").innerText = formatNum(minutes);
+      document.getElementById("seconds").innerText = formatNum(seconds);
     }
 
-    if (document.getElementById("days-inner")) {
-      document.getElementById("days-inner").innerText = formatDays;
-      document.getElementById("hours-inner").innerText = formatHours;
-      document.getElementById("minutes-inner").innerText = formatMinutes;
-      document.getElementById("seconds-inner").innerText = formatSeconds;
+    if(document.getElementById("days-inner")) {
+      document.getElementById("days-inner").innerText = formatNum(days);
+      document.getElementById("hours-inner").innerText = formatNum(hours);
+      document.getElementById("minutes-inner").innerText = formatNum(minutes);
+      document.getElementById("seconds-inner").innerText = formatNum(seconds);
     }
   }
 
   setInterval(updateCountdown, 1000);
   updateCountdown();
 
-  const items = document.querySelectorAll('.slide-item');
-  const prevBtn = document.getElementById('prevBtn');
-  const nextBtn = document.getElementById('nextBtn');
-  const dotsContainer = document.getElementById('dots');
-  
-  let currentIndex = 0;
-  const total = items.length;
-
-  items.forEach((_, index) => {
-    const dot = document.createElement('div');
-    dot.classList.add('dot');
-    if (index === 0) dot.classList.add('active');
-    dot.addEventListener('click', () => updateCarousel(index));
-    dotsContainer.appendChild(dot);
-  });
-
-  const dots = document.querySelectorAll('.dot');
-
-  function updateCarousel(index) {
-    currentIndex = index;
-
-    items.forEach((item, i) => {
-      item.className = 'slide-item';
-      item.style.cssText = "position: absolute; width: 220px; height: 400px; border-radius: 20px; overflow: hidden; box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2); transition: all 0.5s cubic-bezier(0.25, 1, 0.5, 1); cursor: pointer; user-select: none;";
-
-      if (i === currentIndex) {
-        item.classList.add('active');
-      } else if (i === (currentIndex + 1) % total) {
-        item.classList.add('next');
-      } else if (i === (currentIndex - 1 + total) % total) {
-        item.classList.add('prev');
-      } else if (i > currentIndex) {
-        item.classList.add('hidden-right');
-      } else {
-        item.classList.add('hidden-left');
-      }
-    });
-
-    dots.forEach((dot, i) => {
-      dot.classList.toggle('active', i === currentIndex);
-    });
-  }
-
-  items.forEach((item, index) => {
-    item.addEventListener('click', () => updateCarousel(index));
-  });
-
-  if(nextBtn) {
-    nextBtn.addEventListener('click', () => {
-      currentIndex = (currentIndex + 1) % total;
-      updateCarousel(currentIndex);
-    });
-  }
-
-  if(prevBtn) {
-    prevBtn.addEventListener('click', () => {
-      currentIndex = (currentIndex - 1 + total) % total;
-      updateCarousel(currentIndex);
-    });
-  }
-
-  // Intersection Observer untuk animasi scroll naik/turun berdurasi 1.7s
+  // Scroll Animation Observer
   const observerOptions = {
-    root: null,
-    rootMargin: '0px',
-    threshold: 0.15
+    threshold: 0.15,
+    rootMargin: "0px 0px -50px 0px"
   };
 
   const observer = new IntersectionObserver((entries, observer) => {
@@ -2400,16 +2328,76 @@
       if (entry.isIntersecting) {
         entry.target.classList.add('active');
         entry.target.classList.add('visible');
-      } else {
-        entry.target.classList.remove('active');
-        entry.target.classList.remove('visible');
       }
     });
   }, observerOptions);
 
-  document.querySelectorAll('.scroll-animate, .pop-animate, .toggle-btn-wrapper-story, .momen-card, .gift-header, .toggle-btn-wrapper, .wa-btn-wrapper').forEach(el => {
+  document.querySelectorAll('.scroll-animate, .pop-animate, .momen-card, .gift-header, .toggle-btn-wrapper, .wa-btn-wrapper, .toggle-btn-wrapper-story').forEach(el => {
     observer.observe(el);
   });
+
+  // Carousel Script
+  const track = document.getElementById('track');
+  const slides = Array.from(track.children);
+  const nextButton = document.getElementById('nextBtn');
+  const prevButton = document.getElementById('prevBtn');
+  const dotsContainer = document.getElementById('dots');
+  let currentIndex = 0;
+
+  slides.forEach((_, index) => {
+    const dot = document.createElement('div');
+    dot.classList.add('dot');
+    if (index === 0) dot.classList.add('active');
+    dot.addEventListener('click', () => {
+      currentIndex = index;
+      updateCarousel();
+    });
+    dotsContainer.appendChild(dot);
+  });
+  const dots = Array.from(dotsContainer.children);
+
+  function updateCarousel() {
+    slides.forEach((slide, index) => {
+      slide.className = 'slide-item';
+      let offset = (index - currentIndex + slides.length) % slides.length;
+      if (offset > slides.length / 2) offset -= slides.length;
+
+      if (offset === 0) {
+        slide.classList.add('active');
+      } else if (offset === 1) {
+        slide.classList.add('next');
+      } else if (offset === -1) {
+        slide.classList.add('prev');
+      } else if (offset > 1) {
+        slide.classList.add('hidden-right');
+      } else {
+        slide.classList.add('hidden-left');
+      }
+    });
+
+    dots.forEach((dot, index) => {
+      dot.classList.toggle('active', index === currentIndex);
+    });
+  }
+
+  nextButton.addEventListener('click', () => {
+    currentIndex = (currentIndex + 1) % slides.length;
+    updateCarousel();
+  });
+
+  prevButton.addEventListener('click', () => {
+    currentIndex = (currentIndex - 1 + slides.length) % slides.length;
+    updateCarousel();
+  });
+
+  slides.forEach((slide, index) => {
+    slide.addEventListener('click', () => {
+      currentIndex = index;
+      updateCarousel();
+    });
+  });
+
+  updateCarousel();
 </script>
 </body>
 </html>
